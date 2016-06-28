@@ -2,15 +2,14 @@ html,
 body {
   -webkit-border-box: border-box;
   -moz-border-box: border-box;
-  margin: 2%;
-  padding: 0;
+  padding: 2%;
+  margin: 0;
   width: 100%;
   height: 100%;
 }
 
 #main-content {
-  width: 100%;
-  margin: 2%;
+  padding: 1%;
 }
 
 h1 {
