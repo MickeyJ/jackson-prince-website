@@ -8,7 +8,6 @@ var gulp       = require('gulp'),
     uglify     = require('gulp-uglify'),
     sass       = require('gulp-sass');
 
-
 gulp.task('start',() =>{
   nodemon({
     script: './bin/www',

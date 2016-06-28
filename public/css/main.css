@@ -2,10 +2,10 @@ html,
 body {
   -webkit-border-box: border-box;
   -moz-border-box: border-box;
-  padding: 2%;
-  margin: 0;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 2%;
 }
 
 #main-content {
