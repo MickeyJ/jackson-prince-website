@@ -9,6 +9,7 @@ const Head = (props) =>(
     <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/script.js"></script>
   </head>
 );
 

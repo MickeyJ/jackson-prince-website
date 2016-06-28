@@ -21,11 +21,11 @@ gulp.task('script',() =>{
     extensions: ['.js'],
     debug: true
   })
-    .transform(babelify, { presets: ['es2015'] })
-    .bundle()
-    .pipe(source('script.js'))
-    .pipe(streamify(uglify()))
-    .pipe(gulp.dest('public/js'));
+  .transform(babelify, { presets: ['es2015'] })
+  .bundle()
+  .pipe(source('script.js'))
+  .pipe(streamify(uglify()))
+  .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('sass',() =>{
@@ -46,12 +46,10 @@ gulp.task('images',() =>{
     .pipe(gulp.dest('./public/images/'));
 });
 
-
 gulp.task('watch',() =>{
-  gulp.watch('src/**/*.js', ['script']);
+  gulp.watch('src/js/**/*.js', ['script']);
   gulp.watch('src/scss/**/*.scss', ['sass']);
   // gulp.watch('src/images/*', ['images']);
 });
-
 
 gulp.task('default', [ 'start', 'sass', 'script', 'watch']);

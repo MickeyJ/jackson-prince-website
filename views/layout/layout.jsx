@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import Head from './head'
+import NavHeader from './nav_header'
+import Footer from './footer'
 
 const siteName = "Jackson Prince";
 
@@ -17,17 +19,16 @@ export default class Layout extends Component{
 
           <div id="all-wrap">
 
-            <header>
-              <h1>{siteName}</h1>
-            </header>
+            <NavHeader siteName={siteName}/>
 
             <main id="main-content" >
               {this.props.children}
             </main>
 
-          </div>
+            <Footer siteName={siteName}/>
 
-          <script src="js/script.js"></script>
+          </div>
+        
         </body>
       </html>
     )

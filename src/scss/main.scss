@@ -1,23 +1,6 @@
 
-@mixin webkitMoz($key, $value){
-  $key: $value;
-  -webkit-#{$key}: $value;
-  -moz-#{$key}: $value;
-}
+@import 'utils/global-mix';
+@import 'utils/colors';
+@import 'utils/media';
 
-html,
-body{
-  @include webkitMoz(box-sizing, border-box);
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 2%;
-}
-
-#main-content{
-  padding: 1%;
-}
-
-h1{
-  color: RoyalBlue;
-}
+@import './layout/base';
