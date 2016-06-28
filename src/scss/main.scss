@@ -1,0 +1,24 @@
+
+@mixin webkitMoz($key, $value){
+  $key: $value;
+  -webkit-#{$key}: $value;
+  -moz-#{$key}: $value;
+}
+
+html,
+body{
+  @include webkitMoz(box-sizing, border-box);
+  margin: 2%;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#main-content{
+  width: 100%;
+  margin: 2%;
+}
+
+h1{
+  color: RoyalBlue;
+}
