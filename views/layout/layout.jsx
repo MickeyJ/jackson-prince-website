@@ -14,17 +14,20 @@ export default class Layout extends Component{
           description={this.props.description}
         />
         <body>
-        <div id="all-wrap">
 
-          <header>
-            <h1>{siteName}</h1>
-          </header>
+          <div id="all-wrap">
 
-          <main id="main-content" >
-            {this.props.children}
-          </main>
+            <header>
+              <h1>{siteName}</h1>
+            </header>
 
-        </div>
+            <main id="main-content" >
+              {this.props.children}
+            </main>
+
+          </div>
+
+          <script src="js/script.js"></script>
         </body>
       </html>
     )

@@ -9,10 +9,19 @@ export default class Index extends Component{
         title={this.props.title}
         description={this.props.description}>
 
-        <div className="row-fluid">
-          <span>Hello</span>
+        <div className="container-fluid">
+          <span>... The OFFICIAL Website</span>
+          
         </div>
+
+        <br/>
+
+        <button id="balls-btn" className="btn btn-info">
+          Balls
+        </button>
+
         
+
       </DefaultLayout>
     )
   }
