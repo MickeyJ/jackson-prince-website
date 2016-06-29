@@ -6,7 +6,7 @@ const ContactInfo = (props) =>(
       <tr>
         <th>SoundCloud</th>
         <td>
-          <a href="www.soundcloud.com">
+          <a href="https://soundcloud.com/">
             MySoundCloud...
           </a>
         </td>
