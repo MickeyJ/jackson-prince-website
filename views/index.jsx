@@ -8,8 +8,8 @@ export default class Index extends Component{
         title={this.props.title}
         description={this.props.description}>
         
-        <div id="landing-banner-1"></div>
         <div id="landing-banner-2"></div>
+        <div id="landing-banner-1"></div>
 
         <div className="dummy first">
 
@@ -131,6 +131,12 @@ export default class Index extends Component{
               and my pizzle went crizzle, tellivizzle vitae, vestibulum et, my shizz
               gangsta, velit. Maurizzle away gangsta. Sizzle funky fresh magna fo
               amet shit iaculizzle shiznit.
+            </p>
+            <h3>Damn..</h3>
+            <p>
+              Donizzle funky fresh auctizzle maurizzle. Bow wow wow a elizzle
+              da bomb gangsta pretium own yo'. Maecenas a sheezy. Daahng dawg
+              fo shizzle lacizzle uhuh ... yih!
             </p>
           </div>
 
