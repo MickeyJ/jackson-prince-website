@@ -28,7 +28,7 @@ export default class Layout extends Component{
             <Footer siteName={siteName}/>
 
           </div>
-        
+          <script src="js/scroll.js"></script>
         </body>
       </html>
     )

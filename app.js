@@ -3,8 +3,11 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+var multiparty = require('connect-multiparty');
+var multiMiddleware = multiparty();
 
 const routes = require('./routes/index');
+const s3 = require('./routes/s3');
 
 const app = express();
 
@@ -15,11 +18,13 @@ app.engine('jsx',
   require('express-react-views').createEngine({ beautify: true})
 );
 
+app.use(multiMiddleware);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', routes);
+app.use('/api/files', s3);
 
 app.use( (req, res, next) =>{
   const err = new Error('Not Found');
