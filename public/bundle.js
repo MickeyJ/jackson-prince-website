@@ -74,9 +74,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UploadFileForm).call(this));
 
-	    _this.state = {
-	      output: ''
-	    };
+	    _this.state = { output: '' };
 	    return _this;
 	  }
 
@@ -87,30 +85,34 @@
 
 	      e.preventDefault();
 
-	      _jquery2.default.ajax({
-	        url: "/api/files/upload",
-	        type: "POST",
-	        data: new FormData(e.target),
-	        processData: false,
-	        contentType: false
-	      }).then(function (res) {
-	        _this2.setState({
-	          output: 'Success'
+	      if (e.target.file.value) {
+	        _jquery2.default.ajax({
+	          url: "/api/files/upload",
+	          type: "POST",
+	          data: new FormData(e.target),
+	          processData: false,
+	          contentType: false
+	        }).success(function (res) {
+	          _this2.setState({ output: 'Success' });
+	          console.log(res);
+	        }).error(function (jqXHR, status, error) {
+	          _this2.setState({ output: 'Error' });
+	          console.log(status);
+	          console.error(error);
 	        });
-	        console.log(res);
-	      }).catch(function (err) {
-	        _this2.setState({
-	          output: 'Error'
-	        });
-	        console.error(err);
-	      });
+	      } else this.setState({ output: 'Please Choose a File' });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'jumbotron' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Upload a file'
+	        ),
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-inline', onSubmit: this.handleSubmit.bind(this) },
@@ -123,7 +125,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          null,
+	          { className: 'submit-message' },
 	          this.state.output
 	        )
 	      );

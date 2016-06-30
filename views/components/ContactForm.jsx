@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactForm = (props) =>{
   return(
-    <form id="contact-form">
+    <form className="contact-form">
       <h4>Send me a message!</h4>
       <fieldset className="form-group">
         <input className="form-control" type="text" name="contact-name" id="contact-name" placeholder="Name" />

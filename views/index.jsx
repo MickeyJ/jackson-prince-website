@@ -16,7 +16,8 @@ export default class Index extends Component{
 
         <section className="dummy first">
           
-
+          <span>I'm Jackson.</span>
+  
         </section>
 
         <section className="dummy hiZ-index">
@@ -24,6 +25,7 @@ export default class Index extends Component{
           <article id="contact-box" className="container-fluid">
             
             <ContactInfo />
+            <ContactForm />
 
           </article>
 

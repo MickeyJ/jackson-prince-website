@@ -1,9 +1,10 @@
-const contactLink = document.getElementById('contact-link');
-const backToTopLink = document.getElementById('back-to-top');
 
-let scrolling;
-const scrollRate = 10;
-const scrollByPx = 30;
+var contactLink = document.getElementById('contact-link');
+var backToTopLink = document.getElementById('back-to-top');
+
+var scrolling;
+var scrollRate = 10;
+var scrollByPx = 30;
 
 function scroller(el, direction, conditional){
   return scrolling = setInterval(function(){
@@ -14,12 +15,11 @@ function scroller(el, direction, conditional){
 }
 
 function scroll_to(direction, el){
-  const bottomPx = el.scrollHeight - el.clientHeight;
-  const topPx = 0;
-  if(direction === 'bottom') scroller(el, direction, bottomPx);
-  if(direction === 'top') scroller(el, direction, topPx);
+  var top = 0;
+  var bottom = el.scrollHeight - el.clientHeight;
+  if(direction === 'bottom') scroller(el, direction, bottom);
+  if(direction === 'top') scroller(el, direction, top);
 }
-
 
 contactLink.addEventListener('mousedown', function(){
   scroll_to('bottom', document.body)

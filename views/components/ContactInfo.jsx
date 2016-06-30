@@ -4,7 +4,7 @@ const ContactInfo = (props) =>(
   <table id="contact-table" className="table">
     <tbody>
       <tr>
-        <th>SoundCloud</th>
+        <th>Soundcloud</th>
         <td>
           <a href="https://soundcloud.com" target="_blank">
             MySoundCloud...
