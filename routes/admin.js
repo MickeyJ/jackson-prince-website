@@ -27,7 +27,13 @@ router.get('/me', (req, res, next) => {
       .first()
       .then(admin =>{
         delete admin.password_hash;
-        res.json({token, admin});
+        db.Client()
+          .then(clients =>{
+            clients.map(x =>{
+              delete x.password_hash;
+            })
+            res.json({token, admin, clients});
+          })
       })
   } else {
     res.status(401).send({ error: 'No authorized token' });
@@ -48,32 +54,44 @@ router.post('/login', auth.login, (req, res, next) =>{
         const admin_id = admin.admin_id;
         const token = jwt.sign({admin_id}, process.env.JWT_SECRET);
         delete admin.password_hash;
-        res.json({token, admin});
+        db.Client()
+          .then(clients =>{
+            clients.map(x =>{
+              delete x.password_hash;
+            })
+            res.json({token, admin, clients});
+          })
       }
     });
 });
 
 router.post('/register_client', auth.register, (req, res, next) =>{
-  const clientname = req.body.client.clientname;
-  const email = req.body.client.email;
-  const password = bcrypt.hashSync(req.body.client.password, 10);
+  
+  const artist_name = req.body.artistName;
+  const email = req.body.email;
+  const password_hash = bcrypt.hashSync(req.body.password, 10);
+  const description = req.body.description;
+  const bucket_dir = req.body.bucketDir;
+  
   db.Client()
-    .insert({ clientname, email, password })
+    .insert({ artist_name, email, password_hash, description, bucket_dir })
     .returning('*')
     .then(returned => {
-      const client = returned[0];
-      const client_id = client.client_id;
-      const token = jwt.sign({client_id}, process.env.JWT_SECRET);
-      delete client.password;
-      res.send({token, client});
+      db.Client()
+        .then(clients =>{
+          clients.map(x =>{
+            delete x.password_hash;
+          })
+          res.json({clients});
+        })
     })
 });
 
-router.get('/show', (req, res) =>{
+router.get('/show_clients', (req, res) =>{
   db.Client()
     .then(clients =>{
       clients.map(x =>{
-        delete x.password;
+        delete x.password_hash;
       })
       res.json({clients});
     })

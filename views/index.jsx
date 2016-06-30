@@ -25,8 +25,9 @@ export default class Index extends Component{
           <article id="contact-box" className="container-fluid">
             
             <ContactInfo />
-            <ContactForm />
-
+            
+            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
           </article>
 
         </section>

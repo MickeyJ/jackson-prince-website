@@ -20,10 +20,6 @@ router.post('/upload', function(req, res){
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   });
 
-  console.log(req.body);
-
-  console.log(req);
-
   var file = req.files.file;
   var stream = fs.createReadStream(file.path)
   
