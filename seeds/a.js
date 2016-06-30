@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 
 
 exports.seed = function(knex, Promise) {
 
-  let password = bcrypt.hashSync('asdfzxcv', 10);
+  var password = bcrypt.hashSync('asdfzxcv', 10);
   return Promise.join (
     knex('admin').del(),
     knex('admin')
@@ -12,7 +12,6 @@ exports.seed = function(knex, Promise) {
         email: "mickeyj.music@gmail.com",
         password_hash: password,
         image_url: ""
-        
       })
   )
 };
