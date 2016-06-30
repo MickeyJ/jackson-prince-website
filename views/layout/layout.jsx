@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import Head from './head'
-import NavHeader from './nav_header'
-import Footer from './footer'
+import Head from '../components/Head'
+import NavHeader from '../components/NavHeader'
+import Footer from '../components/Footer'
 
 const siteName = "Jackson Prince";
 

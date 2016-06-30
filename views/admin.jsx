@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AppLayout from './layout/app_layout'
+import AppLayout from './layout/admin_layout'
 
 export default class Index extends Component{
   render(){
@@ -8,7 +8,7 @@ export default class Index extends Component{
         title={this.props.title}
         description={this.props.description}>
 
-        <div id="react-app"></div>
+        <div id="admin-app"></div>
         
       </AppLayout>
     )

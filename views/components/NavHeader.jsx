@@ -14,7 +14,7 @@ const NavHeader = (props) =>(
       <span>|</span>
       <a className="black" id="contact-link">Contact</a>
       <span>|</span>
-      <a className="black" href="/client">Client</a>
+      <a className="black" href="/admin">Admin</a>
     </nav>
 
   </section>

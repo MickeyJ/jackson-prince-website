@@ -6,6 +6,12 @@ const config ={
     path: './public',
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
+    new webpack.NoErrorsPlugin()
+  ],
   module: {
     loaders: [
       {
@@ -13,7 +19,7 @@ const config ={
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-1']
         }
       }
     ]

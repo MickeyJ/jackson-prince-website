@@ -15,10 +15,10 @@ router.get('/projects', function(req, res, next) {
   });
 });
 
-router.get('/client', function(req, res, next) {
-  res.render('client', {
-    title: 'Client',
-    description: 'client react app..'
+router.get('/admin', function(req, res, next) {
+  res.render('admin', {
+    title: 'Admin',
+    description: 'admin react app..'
   });
 });
 

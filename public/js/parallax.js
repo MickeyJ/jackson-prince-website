@@ -21,7 +21,7 @@ function parallax(){
   plax_img_1.style.top = (window.pageYOffset / 3.5) - 200  +'px';
   plax_img_2.style.top = (window.pageYOffset / 2.5) - 1100 +'px';
 
-  plax_img_2.style.opacity = (window.pageYOffset / 2.2) / 1000;
+  plax_img_2.style.opacity = (window.pageYOffset / 2) / 1000;
 
 }
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
-import Head from './head'
-import NavHeader from './nav_header'
-import Footer from './footer'
+import Head from '../components/Head'
 
 const siteName = "Jackson Prince";
 
@@ -28,7 +26,7 @@ export default class AppLayout extends Component{
             </header>
 
             <nav id="nav" >
-              <a className="black" href="/">LogOut</a>
+              <a className="black" href="/">Go Back</a>
             </nav>
 
           </section>
