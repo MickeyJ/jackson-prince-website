@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "NODE_ENV=development webpack -w"
+    "dev": "NODE_ENV=development webpack -w",
+    "pro": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "aws-sdk": "^2.4.3",

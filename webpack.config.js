@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 
+const DEV = process.env.NODE_ENV==='development';
+
 const config ={
   entry: './src/react',
   output:{
@@ -25,5 +27,18 @@ const config ={
     ]
   }
 };
+
+if(!DEV){
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      mangle: false,
+      compressor: {
+        drop_console: true,
+        warnings: true
+      }
+    })
+  );
+}
 
 module.exports = config;
