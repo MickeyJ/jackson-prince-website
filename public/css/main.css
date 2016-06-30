@@ -113,6 +113,91 @@
   }
 }
 
+#app-header {
+  height: 40px;
+  line-height: 40px;
+  text-align: none;
+  background: white;
+}
+
+#app-header #nav a {
+  font-size: 1.3em;
+  font-weight: 300;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+  color: black;
+}
+
+@media only screen and (max-width: 768px) {
+  #app-header #nav a {
+    font-size: 1.7em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #app-header #nav a {
+    font-size: 2em;
+  }
+}
+
+#app-header #nav a::selection {
+  background-color: transparent;
+}
+
+#app-header #nav a:hover {
+  color: #104d8d;
+}
+
+#app-header #nav a.active-link {
+  color: #aaa;
+}
+
+#app-header #nav a.black {
+  font-size: 1.3em;
+  font-weight: 300;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+  color: #aaa;
+}
+
+#app-header #nav a.black::selection {
+  background-color: transparent;
+}
+
+#app-header #nav a.black:hover {
+  color: #104d8d;
+}
+
+#app-header #nav a.black.active-link {
+  color: black;
+}
+
+#app-header #nav span {
+  font-size: 1.2em;
+}
+
+@media only screen and (max-width: 768px) {
+  #app-header #nav span {
+    font-size: 1.7em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #app-header #nav span {
+    font-size: 2em;
+  }
+}
+
 #footer {
   width: 100%;
   height: 60px;
