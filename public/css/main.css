@@ -24,7 +24,7 @@
 
 #nav-header header a > span {
   font-size: 30px;
-  color: RoyalBlue;
+  color: black;
 }
 
 #nav-header #nav {
@@ -41,7 +41,7 @@
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
-  color: DodgerBlue;
+  color: black;
 }
 
 @media only screen and (max-width: 768px) {
@@ -65,10 +65,10 @@
 }
 
 #nav-header #nav a.active-link {
-  color: FireBrick;
+  color: #ccc;
 }
 
-#nav-header #nav a.blue {
+#nav-header #nav a.black {
   font-size: 1.3em;
   font-weight: 300;
   text-decoration: none;
@@ -78,73 +78,22 @@
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
-  color: dodgerblue;
+  color: #ccc;
 }
 
-#nav-header #nav a.blue::selection {
+#nav-header #nav a.black::selection {
   background-color: transparent;
 }
 
-#nav-header #nav a.blue:hover {
+#nav-header #nav a.black:hover {
   color: #104d8d;
 }
 
-#nav-header #nav a.blue.active-link {
-  color: mediumseagreen;
-}
-
-#nav-header #nav a.red {
-  font-size: 1.3em;
-  font-weight: 300;
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
-  transition: all 0.1s;
-  color: dodgerblue;
-}
-
-#nav-header #nav a.red::selection {
-  background-color: transparent;
-}
-
-#nav-header #nav a.red:hover {
-  color: #104d8d;
-}
-
-#nav-header #nav a.red.active-link {
-  color: firebrick;
-}
-
-#nav-header #nav a.green {
-  font-size: 1.3em;
-  font-weight: 300;
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
-  transition: all 0.1s;
-  color: mediumseagreen;
-}
-
-#nav-header #nav a.green::selection {
-  background-color: transparent;
-}
-
-#nav-header #nav a.green:hover {
-  color: #104d8d;
-}
-
-#nav-header #nav a.green.active-link {
-  color: MEDIUMSLATEBLUE;
+#nav-header #nav a.black.active-link {
+  color: black;
 }
 
 #nav-header #nav span {
-  font-style: italic !important;
   font-size: 1.3em;
 }
 
@@ -186,7 +135,7 @@
 #landing-banner-1 {
   top: -200px;
   position: fixed;
-  background: url("../images/banner1.jpg") no-repeat 50% 90%;
+  background: url("../images/img05.jpg") no-repeat 50% 65%;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -196,7 +145,7 @@
 #landing-banner-2 {
   top: -1200px;
   position: fixed;
-  background: url("../images/img01.jpg") no-repeat 50% 40%;
+  background: url("../images/img08.jpg") no-repeat 50% 90%;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -266,11 +215,12 @@
 }
 
 #contact-table td:hover {
-  background: HoneyDew;
+  background: #f2f2f2;
 }
 
 #contact-table td a {
   display: block;
+  color: black;
   text-decoration: none;
 }
 

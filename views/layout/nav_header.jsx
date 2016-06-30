@@ -10,9 +10,11 @@ const NavHeader = (props) =>(
     </header>
 
     <nav id="nav" >
-      <a className="blue" href="/">Me</a>
+      <a className="black" href="/">Me</a>
       <span>|</span>
-      <a className="blue" id="contact-link">Contact</a>
+      <a className="black" id="contact-link">Contact</a>
+      <span>|</span>
+      <a className="black" href="/client">Client</a>
     </nav>
 
   </section>

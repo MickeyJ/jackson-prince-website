@@ -72,69 +72,59 @@
 	  function UploadFileForm() {
 	    _classCallCheck(this, UploadFileForm);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UploadFileForm).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UploadFileForm).call(this));
+
+	    _this.state = {
+	      output: ''
+	    };
+	    return _this;
 	  }
 
 	  _createClass(UploadFileForm, [{
-	    key: 'getFileInput',
-	    value: function getFileInput(ref) {
-	      this.filepath = ref;
-	    }
-	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
+	      var _this2 = this;
+
 	      e.preventDefault();
-	      var file = {
-	        path: this.filepath.value
-	      };
-	      var opts = {
-	        url: '/api/files/upload',
-	        data: file,
-	        cache: false,
-	        contentType: false,
+
+	      _jquery2.default.ajax({
+	        url: "/api/files/upload",
+	        type: "POST",
+	        data: new FormData(e.target),
 	        processData: false,
-	        type: 'POST',
-	        success: function success(data) {
-	          alert(data);
-	        }
-	      };
-	      if (file.fake) {
-	        // Make sure no text encoding stuff is done by xhr
-	        opts.xhr = function () {
-	          var xhr = _jquery2.default.ajaxSettings.xhr();xhr.send = xhr.sendAsBinary;return xhr;
-	        };
-	        opts.contentType = "multipart/form-data; boundary=" + data.boundary;
-	        opts.data = data.toString();
-	      }
-	      _jquery2.default.ajax(opts);
-	      // $.ajax( {
-	      //   url: `/api/files/upload`,
-	      //   type: "POST",
-	      //   // processData: false, // important
-	      //   contentType: 'multipart/form-data',
-	      //   dataType : "json",
-	      //   data: file
-	      // } );
-	      // axios.post(`/api/files/upload`, file);
+	        contentType: false
+	      }).then(function (res) {
+	        _this2.setState({
+	          output: 'Success'
+	        });
+	        console.log(res);
+	      }).catch(function (err) {
+	        _this2.setState({
+	          output: 'Error'
+	        });
+	        console.error(err);
+	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
 	      return _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.handleSubmit.bind(this) },
-	        _react2.default.createElement('input', {
-	          type: 'file',
-	          ref: function ref(_ref) {
-	            return _this2.getFileInput(_ref);
-	          }
-	        }),
+	        'div',
+	        null,
 	        _react2.default.createElement(
-	          'button',
-	          { className: 'btn btn-success', type: 'submit' },
-	          'Upload'
+	          'form',
+	          { className: 'form-inline', onSubmit: this.handleSubmit.bind(this) },
+	          _react2.default.createElement('input', { id: 'file', name: 'file', type: 'file', className: 'form-control' }),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-success', type: 'submit' },
+	            'Upload'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          this.state.output
 	        )
 	      );
 	    }
@@ -146,12 +136,7 @@
 	var App = function App() {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'The Client App'
-	    ),
+	    { className: 'container-fluid' },
 	    _react2.default.createElement(UploadFileForm, null)
 	  );
 	};

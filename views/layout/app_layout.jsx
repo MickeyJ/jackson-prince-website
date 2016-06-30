@@ -18,14 +18,29 @@ export default class AppLayout extends Component{
       <body>
 
         <div id="all-wrap">
-  
-          <NavHeader siteName={siteName}/>
+
+          <section id="nav-header">
+
+            <header>
+              <a href="/">
+                <span>{siteName}</span>
+              </a>
+            </header>
+
+            <nav id="nav" >
+              <a className="black" href="/">LogOut</a>
+            </nav>
+
+          </section>
   
           <main id="main-content" >
             {this.props.children}
           </main>
-  
-          <Footer siteName={siteName}/>
+
+          <footer id="footer">
+            <span>&copy; 2015</span>
+            <span>{siteName}</span>
+          </footer>
   
         </div>
         <script src="bundle.js"></script>

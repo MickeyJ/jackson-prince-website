@@ -6,16 +6,16 @@ const ContactInfo = (props) =>(
       <tr>
         <th>SoundCloud</th>
         <td>
-          <a href="https://soundcloud.com/">
+          <a href="https://soundcloud.com" target="_blank">
             MySoundCloud...
           </a>
         </td>
       </tr>
       <tr>
-        <th>Facebook</th>
+        <th>LinkedIn</th>
         <td>
-          <a href="https://www.facebook.com/jackson.prince" target="_blank">
-            facebook.com/jackson.prince
+          <a href="https://www.linkedin.com/in/jackson-prince-4b3a637b" target="_blank">
+            linkedin.com/in/jackson-prince
           </a>
         </td>
       </tr>

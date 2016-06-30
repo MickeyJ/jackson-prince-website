@@ -4,8 +4,6 @@ var router = express.Router();
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var S3FS = require('s3fs');
-// var multiparty = require('connect-multiparty');
-// var multiMiddleware = multiparty()
 
 const AWS_ACCESS_KEY_ID = 'AKIAJRT3WX2BFGACR66A';
 const AWS_SECRET_ACCESS_KEY = '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';
@@ -21,8 +19,6 @@ AWS.config.secretAccessKey = AWS_SECRET_ACCESS_KEY;
 
 var s3 = new AWS.S3();
 var s3Bucket = new AWS.S3({params: {Bucket: 'my-testing-storage'}});
-
-// router.use(multiMiddleware);
 
 router.post('/upload', function(req, res){
 
