@@ -3,7 +3,7 @@ import AudioPlayer from '../../components/AudioPlayer'
 
 import UploadFileForm from '../../components/UploadFileForm'
 
-const S3 = 'https://s3-us-west-1.amazonaws.com';
+const S3 = 'http://s3-us-west-1.amazonaws.com';
 
 const Artist = props =>{
   
@@ -24,7 +24,7 @@ const Artist = props =>{
             key={i}
             date={x.date}
             trackName={x.title}
-            audio={`${S3}/${props.client.bucket_dir}/audio/${x.filename}`}
+            audio={`${S3}/jp-client-bucket/${props.client.bucket_dir}/audio/${x.filename}`}
           />
         ))}
 

@@ -16465,7 +16465,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var S3 = 'https://s3-us-west-1.amazonaws.com';
+	var S3 = 'http://s3-us-west-1.amazonaws.com';
 
 	var Artist = function Artist(props) {
 
@@ -16492,7 +16492,7 @@
 	          key: i,
 	          date: x.date,
 	          trackName: x.title,
-	          audio: S3 + '/' + props.client.bucket_dir + '/audio/' + x.filename
+	          audio: S3 + '/jp-client-bucket/' + props.client.bucket_dir + '/audio/' + x.filename
 	        });
 	      })
 	    );
@@ -16603,11 +16603,11 @@
 
 	      return this.props.createNewClient(newClient).then(function (res) {
 	        _this2.context.router.replace('/clients');
-	      }).catch(function (err) {
-	        _this2.setState({
-	          output: err
-	        });
-	      });
+	      })
+	      // .catch(err =>{
+	      //   this.setState({ output: err});
+	      // })
+	      ;
 	    }
 	  }, {
 	    key: 'render',

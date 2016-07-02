@@ -12,7 +12,7 @@ AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
 var s3 = new AWS.S3();
 
-router.post('/upload_audio/:bucket', function(req, res){
+router.post('/upload_audio/:bucket_dir', function(req, res){
 
   if(!req.files || !req.body){
 
@@ -33,8 +33,8 @@ router.post('/upload_audio/:bucket', function(req, res){
 
         s3.putObject({
           ACL: 'public-read',
-          Bucket: req.params.bucket,
-          Key: "audio/"+ file.originalFilename,
+          Bucket: 'jp-client-bucket',
+          Key: req.params.bucket_dir +"/audio/"+ file.originalFilename,
           Body: stream,
         }, (error, response) =>{
           if(error){

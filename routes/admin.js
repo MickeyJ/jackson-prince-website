@@ -80,30 +80,26 @@ router.post('/login', auth.login, (req, res, next) =>{
 });
 
 router.post('/register_client', auth.register, (req, res, next) =>{
-  
+
   const artist_name = req.body.artistName;
   const email = req.body.email;
   const password_hash = bcrypt.hashSync(req.body.password, 10);
   const description = req.body.description;
   const bucket_dir = req.body.bucketDir;
   let bucketSuccess;
-  
-  db.Client()
+
+    db.Client()
     .insert({ artist_name, email, password_hash, description, bucket_dir })
     .returning('*')
     .then(returned => {
       db.Client()
       .then(clients =>{
-        clients.map(x =>{
-          delete x.password_hash;
-        })
-        s3Client.makeBucket(bucket_dir, 'us-west-1', function(err) {
-          if (err) return res.send('Error creating bucket.', err)
+        clients.map(x =>{ delete x.password_hash })
           res.json({clients});
-        })
-
       })
+
     })
+
 });
 
 router.post('/client', (req, res) =>{

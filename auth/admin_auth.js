@@ -1,7 +1,6 @@
 
 exports.register = function(req, res, next){
-  const body = req.body;
-  if(!body){
+  if(!req.body){
     res.status(422).send({ error: 'Must Provide the Stuff' });
   }
   else

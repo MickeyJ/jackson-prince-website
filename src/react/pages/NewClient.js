@@ -49,11 +49,9 @@ export default class NewClient extends Component{
         .then(res =>{
           this.context.router.replace('/clients');
         })
-        .catch(err =>{
-          this.setState({
-            output: err
-          });
-        })
+        // .catch(err =>{
+        //   this.setState({ output: err});
+        // })
     );
 
   }
