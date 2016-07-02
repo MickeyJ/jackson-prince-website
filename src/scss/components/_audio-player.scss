@@ -2,4 +2,21 @@
 .audio-player{
   width: 400px;
   border: 1px solid #ccc;
+
+  .audio-header{
+
+    h4{
+      display: inline;
+    }
+
+    .thin-text{
+      font-size: 0.9em;
+      font-weight: 200;
+    }
+
+  }
+
 }
+
+
+

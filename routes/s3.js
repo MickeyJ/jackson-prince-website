@@ -11,45 +11,55 @@ AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID,
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
 var s3 = new AWS.S3();
-var s3Bucket = new AWS.S3({params: {Bucket: 'my-testing-storage'}});
 
 router.post('/upload_audio/:bucket', function(req, res){
 
-  var file = req.files.file;
-  var stream = fs.createReadStream(file.path)
+  if(!req.files || !req.body){
 
-  var client_audio_id = req.body.client_id;
-  var title = req.body.title;
-  var date = req.body.date;
-  var filename = file.originalFilename.split(' ').join('+')
+    res.status(422).send('Form is Empty')
 
-  db.Audio()
-    .insert({client_audio_id, title, date, filename})
-    .returning('*')
-    .then(audio =>{
-      console.log(audio);
-    })
+  } else {
 
-  s3.putObject({
-    ACL: 'public-read',
-    Bucket: req.params.bucket,
-    Key: "audio/"+ file.originalFilename,
-    Body: stream,
-  }, (error, response) =>{
-    if(error){
-      console.log(error);
-      res.send('Error!')
-    } else {
-      fs.unlink(file.path, (err) =>{
-        if(err) console.error(err);
+    var file = req.files.file;
+    var filename = file.originalFilename.split(' ').join('+')
+    var stream = fs.createReadStream(file.path)
+    var client_audio_id = req.body.client_id;
+    var title = req.body.title;
+    var date = req.body.date;
+
+    db.Audio()
+      .insert({client_audio_id, title, date, filename})
+      .then(audio =>{
+
+        s3.putObject({
+          ACL: 'public-read',
+          Bucket: req.params.bucket,
+          Key: "audio/"+ file.originalFilename,
+          Body: stream,
+        }, (error, response) =>{
+          if(error){
+            console.log(error);
+            res.send('Error!')
+          } else {
+            fs.unlink(file.path, (err) =>{
+              if(err) console.error(err);
+            })
+            res.send('Success!')
+          }
+        });
+        
       })
-      res.send('Success!')
-    }
-  });
+      .catch(error =>{
+        res.status(422).send({error})
+      })
+
+    
+
+  }
 
 })
 
-router.get('/buckets', function(req, res){
+router.get('/list_buckets', function(req, res){
   s3.listBuckets(function(err, data) {
     if (err) { console.log("Error:", err); }
     else {

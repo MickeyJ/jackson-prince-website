@@ -6,6 +6,26 @@
     &.black { @include link($jp-grey, $jp-black); }
   }
 
+  .app-link{
+    @include transition(all 0.1s);
+    @include center-text($app-header-height, center);
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0 ;
+    background: $jp-grey-light;
+    color: $jp-black;
+
+    &:hover{
+      background: lighten($jp-grey, 10%);
+      color: darken($jp-white, 5%);
+    }
+
+    &.active{
+      background: darken($jp-grey, 10%);
+      color: $jp-white;
+    }
+  }
+
 }
 
 @mixin link($text-color, $active-color) {

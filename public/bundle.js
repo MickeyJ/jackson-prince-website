@@ -15640,6 +15640,8 @@
 	        loaded: true,
 	        duration: this.audio.duration()
 	      });
+
+	      this.clearRAF();
 	    }
 	  }, {
 	    key: 'handlePlay',
@@ -15685,20 +15687,30 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      var minutes = (this.state.duration / 60).toFixed(2);
+	      var seconds = this.state.duration.toFixed(0);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'audio-player' },
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          this.props.trackName
+	          'header',
+	          { className: 'audio-header' },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            this.props.trackName
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'thin-text' },
+	            ' - ',
+	            this.props.date
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'p',
 	          null,
-	          'Duration: ',
-	          (this.state.duration / 60).toFixed(2),
-	          ' minutes'
+	          minutes > 1 ? ' ' + minutes + ' ' + (minutes > 1 ? 'minutes' : 'minute') : ' ' + seconds + ' ' + (seconds > 1 ? 'seconds' : 'second')
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -15715,7 +15727,9 @@
 	        ),
 	        _react2.default.createElement(
 	          'button',
-	          { onClick: this.handleToggle.bind(this) },
+	          {
+	            className: 'btn btn-info',
+	            onClick: this.handleToggle.bind(this) },
 	          this.state.playing ? _react2.default.createElement(
 	            'span',
 	            null,
@@ -15944,7 +15958,7 @@
 	    key: "render",
 	    value: function render() {
 	      var isActive = this.context.router.isActive(this.props.to, true),
-	          className = isActive ? "active-link" : "black";
+	          className = isActive ? "app-link active" : "app-link";
 	      return _react2.default.createElement(
 	        _reactRouter.Link,
 	        _extends({ className: className }, this.props),
@@ -15983,10 +15997,6 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _raf = __webpack_require__(194);
-
-	var _raf2 = _interopRequireDefault(_raf);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -15994,6 +16004,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/** @namespace this */
 
 	var UploadFileForm = function (_Component) {
 	  _inherits(UploadFileForm, _Component);
@@ -16003,71 +16015,89 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UploadFileForm).call(this, props));
 
-	    _this.state = {
-	      output: '',
-	      loading: false,
-	      loadTime: 200,
-	      currentTime: 0
-	    };
+	    _this.state = { output: '' };
 	    return _this;
 	  }
 
 	  _createClass(UploadFileForm, [{
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      e.preventDefault();
-	      this.setState({
-	        loading: true
-	      });
-
-	      // if(e.target.file.value){
-	      //   const form = new FormData(e.target);
-	      //
-	      //   form.append('client_id', this.props.client.client_id);
-	      //
-	      //   $.ajax({
-	      //       url: "/api/files/upload_audio/"+ this.props.client.bucket_dir,
-	      //       type: "POST",
-	      //       data: form,
-	      //       processData: false,
-	      //       contentType: false
-	      //     })
-	      //     .success(res =>{
-	      //       this.setState({ output: 'Success' });
-	      //       console.log(res);
-	      //     })
-	      //     .error((jqXHR, status, error) =>{
-	      //       this.setState({ output: 'Error' });
-	      //       console.log(status);
-	      //       console.error(error);
-	      //     })
-	      //
-	      // } else this.setState({ output: 'Please Choose a File' });
+	    key: 'getTitle',
+	    value: function getTitle(ref) {
+	      this.title = ref;
 	    }
 	  }, {
-	    key: 'renderLoading',
-	    value: function renderLoading() {
+	    key: 'getDate',
+	    value: function getDate(ref) {
+	      this.date = ref;
+	    }
+	  }, {
+	    key: 'getFile',
+	    value: function getFile(ref) {
+	      this.file = ref;
+	    }
+	  }, {
+	    key: 'clearOutput',
+	    value: function clearOutput() {
 	      var _this2 = this;
 
-	      var i = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-
-	      i++;
-	      this.setState({
-	        currentTime: i
-	      });
-
-	      this._raf = (0, _raf2.default)(function () {
-	        return _this2.renderLoading(i);
-	      });
+	      setTimeout(function () {
+	        _this2.setState({ output: '' });
+	      }, 1000);
 	    }
 	  }, {
-	    key: 'clearRAF',
-	    value: function clearRAF() {
-	      _raf2.default.cancel(this._raf);
+	    key: 'setOutput',
+	    value: function setOutput(message) {
+	      this.setState({ output: message });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      var _this3 = this;
+
+	      e.preventDefault();
+
+	      var title = this.title.value;
+	      var date = this.date.value;
+	      var file = this.file.value;
+	      var client_id = this.props.client.client_id;
+	      var bucket = this.props.client.bucket_dir;
+
+	      if (!title || !date || !file) {
+	        return this.setOutput("Fill'em All Out");
+	      }
+
+	      var form = new FormData(e.target);
+
+	      form.append('client_id', client_id);
+	      form.append('title', title);
+	      form.append('date', date);
+
+	      this.setOutput('Loading...');
+
+	      _jquery2.default.ajax({
+	        url: "/api/files/upload_audio/" + bucket,
+	        type: "POST",
+	        data: form,
+	        processData: false,
+	        contentType: false
+
+	      }).success(function (res) {
+	        _this3.setOutput('Success');
+	        _this3.title.value = null;
+	        _this3.date.value = null;
+	        _this3.file.value = null;
+	        _this3.clearOutput();
+	        return _this3.props.getClientProfile(client_id);
+	      }).error(function (jqXHR, status, error) {
+	        _this3.setOutput('Error');
+	        console.log(status);
+	        console.error(error);
+	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this4 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -16079,26 +16109,35 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-inline', onSubmit: this.handleSubmit.bind(this) },
-	          _react2.default.createElement('input', { id: 'title', name: 'title', type: 'text', className: 'form-control', placeholder: 'Title' }),
-	          _react2.default.createElement('input', { id: 'date', name: 'date', type: 'text', className: 'form-control', placeholder: 'Date' }),
-	          _react2.default.createElement('input', { id: 'file', name: 'file', type: 'file', className: 'form-control' }),
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            className: 'form-control',
+	            placeholder: 'Title',
+	            ref: function ref(_ref) {
+	              return _this4.getTitle(_ref);
+	            }
+	          }),
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            className: 'form-control',
+	            placeholder: 'Date',
+	            ref: function ref(_ref2) {
+	              return _this4.getDate(_ref2);
+	            }
+	          }),
+	          _react2.default.createElement('input', {
+	            id: 'file',
+	            name: 'file',
+	            type: 'file',
+	            className: 'form-control',
+	            ref: function ref(_ref3) {
+	              return _this4.getFile(_ref3);
+	            }
+	          }),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.renderLoading.bind(this), className: 'btn btn-success', type: 'submit' },
+	            { className: 'btn btn-success', type: 'submit' },
 	            'Upload'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'svg',
-	            { xmlns: 'http://www.w3.org/2000/svg',
-	              width: this.state.loadTime,
-	              height: '20px',
-	              viewPort: '0 0 ' + this.state.loadTime + ' 100' },
-	            _react2.default.createElement('rect', { width: this.state.loadTime, height: '20', x: '0', fill: '#ccc' }),
-	            _react2.default.createElement('rect', { width: this.state.currentTime, height: '20', x: '0', fill: '#008d46' })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -16177,8 +16216,7 @@
 	        return this.props.verifyAdmin().then(function (res) {
 	          _this2.context.router.replace('/clients');
 	        }).catch(function (err) {
-	          console.log(_this2.props.error);
-	          if (err.error) {
+	          if (err) {
 	            _this2.handleLogout();
 	          }
 	        });
@@ -16189,9 +16227,9 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
-	          'section',
+	          'div',
 	          { id: 'app-header' },
 	          _react2.default.createElement(_Navbar2.default, {
 	            token: _jwt_helper2.default.fetch(),
@@ -16240,8 +16278,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(55);
-
 	var _NavLink = __webpack_require__(150);
 
 	var _NavLink2 = _interopRequireDefault(_NavLink);
@@ -16261,32 +16297,34 @@
 	    );
 	  } else {
 	    return _react2.default.createElement(
-	      'nav',
-	      { id: 'nav' },
+	      'ul',
+	      { id: 'app-nav', className: 'nav nav-pills' },
 	      _react2.default.createElement(
-	        _NavLink2.default,
-	        { to: '/clients' },
-	        'Clients'
-	      ),
-	      _react2.default.createElement(
-	        'span',
+	        'li',
 	        null,
-	        ' | '
+	        _react2.default.createElement(
+	          _NavLink2.default,
+	          { to: '/clients' },
+	          'Clients'
+	        )
 	      ),
 	      _react2.default.createElement(
-	        _NavLink2.default,
-	        { to: '/new_client' },
-	        'New Client'
-	      ),
-	      _react2.default.createElement(
-	        'span',
+	        'li',
 	        null,
-	        ' | '
+	        _react2.default.createElement(
+	          _NavLink2.default,
+	          { to: '/new_client' },
+	          'New Client'
+	        )
 	      ),
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/login', onClick: props.handleLogout.bind(undefined) },
-	        'Logout'
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _NavLink2.default,
+	          { to: '/login', onClick: props.handleLogout.bind(undefined) },
+	          'Logout'
+	        )
 	      )
 	    );
 	  }
@@ -16371,7 +16409,8 @@
 	          })
 	        ),
 	        _react2.default.cloneElement(this.props.children, {
-	          client: this.props.client
+	          client: this.props.client,
+	          getClientProfile: this.props.getClientProfile
 	        })
 	      );
 	    }
@@ -16444,10 +16483,14 @@
 	        null,
 	        props.client.description
 	      ),
-	      _react2.default.createElement(_UploadFileForm2.default, { client: props.client }),
+	      _react2.default.createElement(_UploadFileForm2.default, {
+	        getClientProfile: props.getClientProfile,
+	        client: props.client
+	      }),
 	      props.client.audio.map(function (x, i) {
 	        return _react2.default.createElement(_AudioPlayer2.default, {
 	          key: i,
+	          date: x.date,
 	          trackName: x.title,
 	          audio: S3 + '/' + props.client.bucket_dir + '/audio/' + x.filename
 	        });
@@ -16456,7 +16499,7 @@
 	  } else {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'container' },
+	      { className: 'container artist' },
 	      _react2.default.createElement(
 	        'h4',
 	        null,

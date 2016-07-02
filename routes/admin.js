@@ -62,10 +62,8 @@ router.post('/login', auth.login, (req, res, next) =>{
     .whereRaw('lower(email) = ?', body.email.toLowerCase())
     .first()
     .then(admin => {
-      if(!admin){
-        res.status(422).send({ error: 'Invalid email' });
-      } else if(!bcrypt.compareSync(body.password, admin.password_hash)) {
-        res.status(422).send({ error: 'Invalid password' });
+      if(!admin || !bcrypt.compareSync(body.password, admin.password_hash)){
+        res.status(422).send({ error: 'Invalid email or password' });
       } else {
         const admin_id = admin.admin_id;
         const token = jwt.sign({admin_id}, process.env.JWT_SECRET);

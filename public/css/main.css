@@ -1,4 +1,4 @@
-#nav-header::after {
+#nav-header::after, #app-header::after {
   content: '';
   display: table;
   clear: both;
@@ -97,6 +97,30 @@
   color: black;
 }
 
+#nav-header #nav .app-link {
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  background: #f6f6f6;
+  color: black;
+}
+
+#nav-header #nav .app-link:hover {
+  background: #c4c4c4;
+  color: #f2f2f2;
+}
+
+#nav-header #nav .app-link.active {
+  background: #919191;
+  color: white;
+}
+
 #nav-header #nav span {
   font-size: 1.3em;
 }
@@ -114,13 +138,18 @@
 }
 
 #app-header {
-  height: 40px;
-  line-height: 40px;
-  text-align: none;
+  margin: 0;
+  padding: 0;
+  height: 60px;
   background: white;
+  width: 500px;
 }
 
-#app-header #nav a {
+#app-header #app-nav {
+  float: left;
+}
+
+#app-header #app-nav a {
   font-size: 1.3em;
   font-weight: 300;
   text-decoration: none;
@@ -134,30 +163,30 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #app-header #nav a {
+  #app-header #app-nav a {
     font-size: 1.7em;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  #app-header #nav a {
+  #app-header #app-nav a {
     font-size: 2em;
   }
 }
 
-#app-header #nav a::selection {
+#app-header #app-nav a::selection {
   background-color: transparent;
 }
 
-#app-header #nav a:hover {
+#app-header #app-nav a:hover {
   color: #104d8d;
 }
 
-#app-header #nav a.active-link {
+#app-header #app-nav a.active-link {
   color: #aaa;
 }
 
-#app-header #nav a.black {
+#app-header #app-nav a.black {
   font-size: 1.3em;
   font-weight: 300;
   text-decoration: none;
@@ -170,32 +199,40 @@
   color: #aaa;
 }
 
-#app-header #nav a.black::selection {
+#app-header #app-nav a.black::selection {
   background-color: transparent;
 }
 
-#app-header #nav a.black:hover {
+#app-header #app-nav a.black:hover {
   color: #104d8d;
 }
 
-#app-header #nav a.black.active-link {
+#app-header #app-nav a.black.active-link {
   color: black;
 }
 
-#app-header #nav span {
-  font-size: 1.2em;
+#app-header #app-nav .app-link {
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  background: #f6f6f6;
+  color: black;
 }
 
-@media only screen and (max-width: 768px) {
-  #app-header #nav span {
-    font-size: 1.7em;
-  }
+#app-header #app-nav .app-link:hover {
+  background: #c4c4c4;
+  color: #f2f2f2;
 }
 
-@media only screen and (max-width: 480px) {
-  #app-header #nav span {
-    font-size: 2em;
-  }
+#app-header #app-nav .app-link.active {
+  background: #919191;
+  color: white;
 }
 
 #footer {
@@ -341,6 +378,15 @@
 .audio-player {
   width: 400px;
   border: 1px solid #ccc;
+}
+
+.audio-player .audio-header h4 {
+  display: inline;
+}
+
+.audio-player .audio-header .thin-text {
+  font-size: 0.9em;
+  font-weight: 200;
 }
 
 ::-webkit-scrollbar {

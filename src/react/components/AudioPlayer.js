@@ -19,7 +19,9 @@ export default class AudioPlayer extends Component{
     this.setState({
       loaded: true,
       duration: this.audio.duration()
-    })
+    });
+
+    this.clearRAF()
   }
   handlePlay(){
     this.setState({
@@ -51,10 +53,20 @@ export default class AudioPlayer extends Component{
     raf.cancel(this._raf)
   }
   render(){
+    let minutes = (this.state.duration / 60).toFixed(2)
+    let seconds = this.state.duration.toFixed(0)
     return(
       <div className="audio-player">
-        <h4>{this.props.trackName}</h4>
-        <p>Duration: {(this.state.duration / 60).toFixed(2)} minutes</p>
+        <header className="audio-header">
+          <h4>{this.props.trackName}</h4>
+          <span className='thin-text'> - {this.props.date}</span>
+        </header>
+        <p>
+          {minutes > 1
+            ? ` ${minutes} ${minutes > 1 ? `minutes` : 'minute'}`
+            : ` ${seconds} ${seconds > 1 ? `seconds` : 'second'}`
+          }
+        </p>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg"
                width={this.state.duration} 
@@ -64,8 +76,13 @@ export default class AudioPlayer extends Component{
             <rect width={this.state.currentTime} height="10" x="0" fill="#008d46" />
           </svg>
         </div>
-        <button onClick={this.handleToggle.bind(this)}>
-          {(this.state.playing) ? <span>&#10074;&#10074;</span> : <span>&#9658;</span> }
+        <button
+          className="btn btn-info"
+          onClick={this.handleToggle.bind(this)}>
+          {(this.state.playing)
+            ? <span>&#10074;&#10074;</span>
+            : <span>&#9658;</span>
+          }
         </button>
         <Audio
           src={this.props.audio}

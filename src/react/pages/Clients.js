@@ -26,7 +26,8 @@ export default class Clients extends Component{
         </section>
 
         {React.cloneElement(this.props.children, {
-          client: this.props.client
+          client: this.props.client,
+          getClientProfile: this.props.getClientProfile
         })}
 
       </div>

@@ -32,17 +32,16 @@
 }
 
 #app-header{
-  @include center-text($app-header-height, none);
+  @include resetMP;
+  @extend %clearFix;
+  height: $app-header-height;
   background: $jp-white;
+  width: 500px;
 
-  #nav{
+  #app-nav{
+    float: left;
     @include links;
 
-    span{
-      font-size: 1.2em;
-      @include tablet{ font-size: 1.7em; }
-      @include phone{ font-size: 2em; }
-    }
 
   }
 

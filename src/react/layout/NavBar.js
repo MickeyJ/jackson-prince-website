@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 import NavLink from './../components/NavLink'
 
@@ -12,13 +11,17 @@ const Navbar = (props) => {
     )
   } else {
     return (
-      <nav id="nav">
-        <NavLink to="/clients">Clients</NavLink>
-        <span> | </span>
-        <NavLink to="/new_client">New Client</NavLink>
-        <span> | </span>
-        <Link to="/login" onClick={props.handleLogout.bind(this)}>Logout</Link>
-      </nav>
+      <ul id='app-nav' className="nav nav-pills">
+        <li>
+          <NavLink to="/clients">Clients</NavLink>
+        </li>
+        <li>
+          <NavLink to="/new_client">New Client</NavLink>
+        </li>
+        <li>
+          <NavLink to="/login" onClick={props.handleLogout.bind(this)}>Logout</NavLink>
+        </li>
+      </ul>
     )
   }
 };

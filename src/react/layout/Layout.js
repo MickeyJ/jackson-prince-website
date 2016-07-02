@@ -19,8 +19,7 @@ class Layout extends Component{
       return this.props.verifyAdmin().then(res => {
         this.context.router.replace('/clients');
       }).catch(err =>{
-        console.log(this.props.error);
-        if(err.error){
+        if(err){
           this.handleLogout()
         }
       })
@@ -28,13 +27,13 @@ class Layout extends Component{
   }
   render(){
     return(
-      <div>
-        <section id="app-header">
+      <div className="container-fluid">
+        <div id="app-header">
           <Navbar
             token={JWT.fetch()}
             handleLogout={this.handleLogout.bind(this)}
           />
-        </section>
+        </div>
 
         <main>
           {this.props.children}

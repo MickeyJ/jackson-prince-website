@@ -14,11 +14,15 @@ const Artist = props =>{
         <h3>{props.client.artist_name}</h3>
         <p>{props.client.description}</p>
 
-        <UploadFileForm client={props.client}/>
+        <UploadFileForm 
+          getClientProfile={props.getClientProfile} 
+          client={props.client}
+        />
 
         {props.client.audio.map((x, i) =>(
           <AudioPlayer
             key={i}
+            date={x.date}
             trackName={x.title}
             audio={`${S3}/${props.client.bucket_dir}/audio/${x.filename}`}
           />
@@ -28,7 +32,7 @@ const Artist = props =>{
     )
   } else {
     return(
-      <div className="container">
+      <div className="container artist">
 
         <h4>Select Artist</h4>
 
