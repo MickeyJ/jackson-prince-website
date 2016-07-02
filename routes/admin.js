@@ -99,9 +99,9 @@ router.post('/register_client', auth.register, (req, res, next) =>{
         })
         s3Client.makeBucket(bucket_dir, 'us-west-1', function(err) {
           if (err) return res.send('Error creating bucket.', err)
-          bucketSuccess = 'Bucket created successfully in "us-west-1".'
+          res.json({clients});
         })
-        res.json({clients});
+
       })
     })
 });
