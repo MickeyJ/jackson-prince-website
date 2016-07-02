@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
 
   var password1 = bcrypt.hashSync('xxxxxxx', 10);
   var password2 = bcrypt.hashSync('xxxxxxx', 10);
+  
   return Promise.join (
     knex('admin').del(),
     knex('admin')
