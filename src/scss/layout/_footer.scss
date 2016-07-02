@@ -1,0 +1,23 @@
+
+#footer{
+  width: 100%;
+  height: $footer-height;
+  line-height: $footer-height;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #ccc;
+  background-color: #ffffff;
+
+  span{
+    @include marg-lat;
+
+    a{
+      position: absolute;
+      bottom: 0;
+      right: 1%;
+      cursor: pointer;
+    }
+  }
+
+}

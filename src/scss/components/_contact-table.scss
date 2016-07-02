@@ -1,0 +1,47 @@
+
+#contact-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#contact-table{
+  width: 600px;
+  font-size: 1em;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+
+  @include phone{
+    width: 100%;
+    font-size: 1.3em;
+  }
+
+  tr{
+
+    border-bottom: 1px solid #ccc;
+  }
+
+  th{
+    text-align: center;
+    font-weight: 400;
+  }
+
+  td{
+    border-left: 2px solid #ccc;
+    font-weight: 300;
+    @include transition(background 0.1s);
+
+    &:hover{
+      background: lighten($jp-grey, 30%);
+    }
+
+    a{
+      display: block;
+      color: $jp-black;
+      text-decoration: none;
+    }
+
+  }
+}

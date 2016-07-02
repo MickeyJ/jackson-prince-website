@@ -1,0 +1,25 @@
+@mixin links {
+  a {
+    @include tablet{ font-size: 1.7em; }
+    @include phone{ font-size: 2em; }
+    @include link($jp-black, $jp-grey);
+    &.black { @include link($jp-grey, $jp-black); }
+  }
+
+}
+
+@mixin link($text-color, $active-color) {
+  font-size: 1.3em;
+  font-weight: 300;
+  text-decoration: none;
+  @include no-select-text(pointer);
+  @include transition(all 0.1s);
+  @include color-link($text-color);
+  &:hover{ color: #104d8d; }
+  &.active-link { color: $active-color; }
+
+}
+
+@mixin color-link($text-color) {
+  color: $text-color;
+}

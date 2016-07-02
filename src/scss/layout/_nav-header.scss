@@ -1,0 +1,49 @@
+@import '../components/nav-link';
+
+#nav-header{
+  @extend %clearFix;
+  @include center-text($header-height, none);
+  @include banner-shadow-inset(12px, 11px, $jp-shadow);
+  padding: 0 1%;
+  background: $jp-white;
+
+  header{
+    float: left;
+
+    a>span{
+      font-size: 30px;
+      color: $jp-black;
+    }
+
+  }
+
+  #nav{
+    float: right;
+    @include links;
+
+    span{
+      font-size: 1.3em;
+      @include tablet{ font-size: 1.7em; }
+      @include phone{ font-size: 2em; }
+    }
+
+  }
+
+}
+
+#app-header{
+  @include center-text($app-header-height, none);
+  background: $jp-white;
+
+  #nav{
+    @include links;
+
+    span{
+      font-size: 1.2em;
+      @include tablet{ font-size: 1.7em; }
+      @include phone{ font-size: 2em; }
+    }
+
+  }
+
+}

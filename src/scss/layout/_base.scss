@@ -1,0 +1,60 @@
+@import 'nav-header';
+@import 'footer';
+@import '../components/project-item';
+@import '../components/landing-banner';
+@import '../components/banners';
+@import '../components/forms';
+@import '../components/contact-table';
+@import '../components/menu';
+@import '../components/audio-player';
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+html,
+body{
+  @include webkitMoz(box-sizing, border-box);
+  @include resetMP;
+  height: 100%;
+  width: 100%;
+  font-size: 17px;
+}
+
+#all-wrap{
+  min-height: 100%;
+  position: relative;
+  @include forms;
+}
+
+#main-content{
+  @include project-item;
+  padding-bottom: $footer-height;
+}
+
+.inner-layout{
+  @include webkitMoz(box-sizing, border-box);
+  height: 100%;
+  width: 100%;
+}
+
+.dummy{
+  position: relative;
+  width: 100%;
+  background: white;
+
+  p{
+    line-height: 34px;
+  }
+
+  &.first{
+    @include banner-shadow-inset(12px, 11px, $jp-shadow);
+    margin-top: 500px;
+    @include center-text(1500px, center);
+    @include no-select-text(default);
+  }
+
+  &.hiZ-index{
+    z-index: 20;
+  }
+}

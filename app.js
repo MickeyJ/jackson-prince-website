@@ -30,30 +30,30 @@ app.use('/', routes);
 app.use('/api/admin', admin);
 app.use('/api/files', s3);
 
-app.use( (req, res, next) =>{
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// app.use( (req, res, next) =>{
+//   const err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
-if(app.get('env') === 'development') {
-  app.use((err, req, res, next) =>{
-    res.status(err.status || 500);
-    console.error(err);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-app.use( (err, req, res, next) =>{
-  res.status(err.status || 500);
-  console.error(err);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+// if(app.get('env') === 'development') {
+//   app.use((err, req, res, next) =>{
+//     res.status(err.status || 500);
+//     console.error(err);
+//     res.render('error', {
+//       message: err.message,
+//       error: err
+//     });
+//   });
+// }
+//
+// app.use( (err, req, res, next) =>{
+//   res.status(err.status || 500);
+//   console.error(err);
+//   res.render('error', {
+//     message: err.message,
+//     error: {}
+//   });
+// });
 
 module.exports = app;

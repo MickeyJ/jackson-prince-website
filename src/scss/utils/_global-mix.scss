@@ -1,0 +1,134 @@
+
+@function set-width($target, $boxCount, $margin){
+  @return calc((#{$target} / #{$boxCount}) - #{$margin} * 1.5);
+}
+
+
+%clearFix::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@mixin rowFactory($target, $boxCount, $margin, $align: top) {
+  width: set-width($target, $boxCount, $margin);
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: $align;
+  box-sizing: border-box;
+}
+
+@mixin webkitMoz($key, $value){
+  $key: $value;
+  -webkit-#{$key}: $value;
+  -moz-#{$key}: $value;
+}
+
+@mixin rounded($radius: 5px){
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin no-select-text($cursor){
+  cursor: $cursor;
+  user-select: none;
+  -webkit-user-select: none;
+  &::selection{
+    background-color: transparent;
+  }
+}
+
+@mixin center-text($height, $align){
+  height: $height;
+  line-height: $height;
+  text-align: $align;
+}
+
+@mixin banner-shadow-inset($depth, $blur, $color){
+  -webkit-box-shadow: (
+     inset 0 10px $depth -#{$blur} $color,
+     inset 0 -10px $depth -#{$blur} $color
+  );
+  -moz-box-shadow: (
+     inset 0 10px $depth -#{$blur} $color,
+     inset 0 -10px $depth -#{$blur} $color
+  );
+  -o-box-shadow: (
+     inset 0 10px $depth -#{$blur} $color,
+     inset 0 -10px $depth -#{$blur} $color
+  );
+  box-shadow: (
+     inset 0 10px $depth -#{$blur} $color,
+     inset 0 -10px $depth -#{$blur} $color
+  );
+}
+
+@mixin banner-shadow($depth, $blur, $color){
+  -webkit-box-shadow: (
+      0 10px $depth -#{$blur} $color,
+      0 -10px $depth -#{$blur} $color
+  );
+  -moz-box-shadow: (
+      0 10px $depth -#{$blur} $color,
+      0 -10px $depth -#{$blur} $color
+  );
+  -o-box-shadow: (
+      0 10px $depth -#{$blur} $color,
+      0 -10px $depth -#{$blur} $color
+  );
+  box-shadow: (
+      0 10px $depth -#{$blur} $color,
+      0 -10px $depth -#{$blur} $color
+  );
+}
+
+
+/*                         border-radius
+*  -----------------------------------------------------------
+*/
+
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+/*                         TRANSITION
+*  -----------------------------------------------------------
+*/
+
+@mixin transition($type){
+  -webkit-transition: $type;
+  -o-transition: $type;
+  transition: $type;
+}
+
+@mixin resetMP{
+  margin: 0;
+  padding: 0;
+}
+
+@mixin center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin marg-lat{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+@mixin marg-vert{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+@mixin pad-lat{
+  padding-left: 1%;
+  padding-right: 1%;
+}
+@mixin pad-vert{
+  padding-top: 1%;
+  padding-bottom: 1%;
+}

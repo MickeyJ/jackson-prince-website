@@ -1,0 +1,38 @@
+//noinspection SassScssUnresolvedMixin
+@mixin forms{
+  .contact-form{
+    @include form(600px);
+
+  }
+
+  .login-form{
+    @include form(600px);
+
+  }
+}
+
+@mixin form($width){
+  width: $width;
+  margin: 0 auto;
+
+  @include phone{
+    width: 100%;
+    font-size: 1.3em;
+  }
+
+  h4{
+    text-align: center;
+  }
+
+  input{
+    margin: 5px 0;
+  }
+
+  textarea{
+    resize: none;
+  }
+}
+
+.submit-message{
+  color: Crimson;
+}

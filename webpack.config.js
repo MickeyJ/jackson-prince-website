@@ -8,7 +8,7 @@ const config ={
     path: './public',
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
+  devtool: DEV ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.EnvironmentPlugin(["NODE_ENV"]),

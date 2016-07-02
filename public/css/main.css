@@ -226,6 +226,7 @@
   position: fixed;
   background: url("../images/img05.jpg") no-repeat 50% 65%;
   background-size: cover;
+  overflow: hidden;
   width: 100%;
   height: 100vh;
   z-index: -10;
@@ -236,6 +237,7 @@
   position: fixed;
   background: url("../images/img02.jpg") no-repeat 50% -40%;
   background-size: cover;
+  overflow: hidden;
   width: 100%;
   height: 100vh;
   z-index: 2;
@@ -292,6 +294,53 @@
   display: block;
   color: black;
   text-decoration: none;
+}
+
+#artist-menu {
+  float: left;
+  width: 150px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.artist-menu-link {
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  height: 100px;
+  line-height: 100px;
+  text-align: left;
+  -webkit-transition: background 0.1s;
+  -o-transition: background 0.1s;
+  transition: background 0.1s;
+}
+
+.artist-menu-link:hover {
+  background: #f6f6f6;
+}
+
+.artist-menu-link:hover .arrow {
+  opacity: 1;
+}
+
+.artist {
+  float: right;
+  border: 1px solid #ccc;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.1s;
+  -o-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+}
+
+.audio-player {
+  width: 400px;
+  border: 1px solid #ccc;
 }
 
 ::-webkit-scrollbar {
@@ -368,6 +417,13 @@ body {
 
 #main-content .project-item img {
   width: 30%;
+}
+
+.inner-layout {
+  -webkit-border-box: border-box;
+  -moz-border-box: border-box;
+  height: 100%;
+  width: 100%;
 }
 
 .dummy {
