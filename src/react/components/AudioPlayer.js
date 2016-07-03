@@ -20,7 +20,6 @@ export default class AudioPlayer extends Component{
       loaded: true,
       duration: this.audio.duration()
     });
-
     this.clearRAF()
   }
   handlePlay(){

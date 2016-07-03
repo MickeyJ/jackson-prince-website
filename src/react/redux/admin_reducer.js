@@ -40,7 +40,10 @@ export default function(state = INITIAL_STATE, action) {
     case REMOVE_CLIENT:
       return { ...state,
         ...state.token,
-        clients: action.payload.data.clients,
+        clients: state.clients.filter(x =>(
+          x.client_id !== action.payload.data.client_id
+        )),
+        client: {},
         error: action.error
       };
     case REMOVE_AUDIO:

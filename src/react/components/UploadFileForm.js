@@ -16,15 +16,9 @@ export default class UploadFileForm extends Component{
   getFile(ref){
     this.file = ref
   }
-  clearOutput(){
-    setTimeout(() =>{
-      this.setState({ output: '' });
-    }, 1000)
-  }
   setOutput(message){
     this.setState({ output: message });
   }
-
   handleSubmit(e){
     e.preventDefault();
 
@@ -54,11 +48,10 @@ export default class UploadFileForm extends Component{
       contentType: false
 
     }).success(res =>{
-      this.setOutput('Success');
+      this.setOutput('');
       this.title.value = null;
       this.date.value = null;
       this.file.value = null;
-      this.clearOutput();
       return this.props.getClientProfile(client_id)
 
     }).error((jqXHR, status, error) =>{

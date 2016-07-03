@@ -5,6 +5,7 @@ import { getClientProfile, removeClient, removeAudio } from '../redux/actions'
 export default class Clients extends Component{
   getClientProfile(id){
     return this.props.getClientProfile(id).then(res =>{
+      this.context.router.push('/clients');
     })
   }
   removeClient(id){
@@ -13,7 +14,7 @@ export default class Clients extends Component{
       this.props.removeClient(id).then(res =>{
         console.log(res);
       });
-      this.context.router.go('/client');
+      this.context.router.replace('/clients');
     }
   }
   removeAudio(id){

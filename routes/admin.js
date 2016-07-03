@@ -128,8 +128,10 @@ router.delete('/delete_client/:id', (req, res) =>{
         db.Client()
         .where({client_id: req.params.id})
         .del()
-        .then(client =>{
-          res.json({audio});
+        .returning('client_id')
+        .then(id =>{
+          let client_id = id[0]
+          res.json({client_id});
         })
     })
   } else {
