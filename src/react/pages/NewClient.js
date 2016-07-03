@@ -20,17 +20,14 @@ export default class NewClient extends Component{
   getDescriptionValue(ref){
     this.description = ref;
   }
-  getBucketDirValue(ref){
-    this.bucketDir = ref;
-  }
   handleSubmit(e){
     e.preventDefault();
     let artistName = this.artistName.value;
     let email = this.email.value;
     let password = this.password.value;
     let description = this.description.value;
-    let bucketDir = this.bucketDir.value;
-
+    let bucketDir = artistName.split(' ').join('').toLowerCase();
+    
     if(!bucketDir || !description || !password || !email || !artistName){
       this.setState({ output: "Fill'em All Out Yo."});
       return;
@@ -49,9 +46,9 @@ export default class NewClient extends Component{
         .then(res =>{
           this.context.router.replace('/clients');
         })
-        // .catch(err =>{
-        //   this.setState({ output: err});
-        // })
+        .catch(err =>{
+          this.setState({ output: err});
+        })
     );
 
   }
@@ -99,16 +96,6 @@ export default class NewClient extends Component{
               placeholder="Description"
               className="form-control"
               ref={(ref) => this.getDescriptionValue(ref)}
-            />
-          </fieldset>
-          <fieldset className="form-group">
-            <input
-              type="text"
-              id="client-bucket"
-              name="client-bucket"
-              placeholder="Bucket ( like-this-no-caps )"
-              className="form-control"
-              ref={(ref) => this.getBucketDirValue(ref)}
             />
           </fieldset>
           <input className="btn btn-info" type="submit" value="Login"/>

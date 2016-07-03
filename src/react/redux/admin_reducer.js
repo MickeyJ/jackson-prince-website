@@ -44,14 +44,14 @@ export default function(state = INITIAL_STATE, action) {
         error: action.error
       };
     case REMOVE_AUDIO:
-      return { ...state,
+      return {...state,
         ...state.token,
-        client: state.client.audio.filter(x =>(
-          action.payload.data.audio[0].audio_id
-        )),
-        error: action.error
+        client: {...state.client,
+          audio: state.client.audio.filter(x =>(
+            x.audio_id != action.payload.data.audio[0].audio_id
+          ))
+        }
       };
-    
     default:
       return state
   }
