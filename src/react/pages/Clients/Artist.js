@@ -3,7 +3,7 @@ import AudioPlayer from '../../components/AudioPlayer'
 
 import UploadFileForm from '../../components/UploadFileForm'
 
-const S3 = 'http://s3-us-west-1.amazonaws.com';
+const S3 = 'https://s3-us-west-1.amazonaws.com';
 
 const Artist = props =>{
   
