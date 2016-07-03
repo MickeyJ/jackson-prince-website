@@ -41,7 +41,7 @@ export default class AppLayout extends Component{
           </footer>
   
         </div>
-        <script src="bundle.js"></script>
+        <script src="js/bundle.js"></script>
       </body>
       </html>
     )

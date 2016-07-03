@@ -73,11 +73,12 @@ router.post('/register_client', auth.register, (req, res, next) =>{
     db.Client()
     .insert({ artist_name, email, password_hash, description, bucket_dir })
     .returning('*')
-    .then(returned => {
+    .then(client => {
+      delete client[0].password_hash
       db.Client()
       .then(clients =>{
         clients.map(x =>{ delete x.password_hash })
-          res.json({clients});
+          res.json({ clients, client: client[0] });
       })
 
     })

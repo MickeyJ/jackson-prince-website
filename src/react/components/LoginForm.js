@@ -4,6 +4,8 @@ import JWT from '../helpers/jwt_helper.js'
 import { connect } from 'react-redux'
 import { adminLogin } from '../redux/actions'
 
+import Button from '../materials/Button'
+
 export default class LoginForm extends Component{
   constructor(){
     super();
@@ -49,7 +51,6 @@ export default class LoginForm extends Component{
       <div className="jumbotron">
         
         <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
-          <h4>Login</h4>
           <fieldset className="form-group">
             <input 
               type="text" 
@@ -70,7 +71,7 @@ export default class LoginForm extends Component{
               ref={(ref) => this.getPasswordValue(ref)}
             />
           </fieldset>
-          <input className="btn btn-info" type="submit" value="Login"/>
+          <Button className="btn btn-primary" type="submit" text="Login" />
         </form>
 
         <span className="submit-message">{this.state.output}</span>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 import { createNewClient } from '../redux/actions'
+
+import Button from '../materials/Button'
 
 export default class NewClient extends Component{
   constructor(){
@@ -63,7 +64,7 @@ export default class NewClient extends Component{
               type="text"
               id="client-name"
               name="client-name"
-              placeholder="Artist"
+              placeholder="Artist Name"
               className="form-control"
               ref={(ref) => this.getArtistNameValue(ref)}
             />
@@ -93,12 +94,12 @@ export default class NewClient extends Component{
               type="text"
               id="client-description"
               name="client-description"
-              placeholder="Description"
+              placeholder="Description/Genre"
               className="form-control"
               ref={(ref) => this.getDescriptionValue(ref)}
             />
           </fieldset>
-          <input className="btn btn-info" type="submit" value="Login"/>
+          <Button className="btn btn-primary" type="submit" text="Create"/>
         </form>
 
         <span className="submit-message">{this.state.output}</span>

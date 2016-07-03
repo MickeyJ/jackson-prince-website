@@ -5,14 +5,18 @@ const DEV = process.env.NODE_ENV==='development';
 const config ={
   entry: './src/react',
   output:{
-    path: './public',
+    path: './public/js',
     filename: 'bundle.js'
   },
   devtool: DEV ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ],
   module: {
     loaders: [

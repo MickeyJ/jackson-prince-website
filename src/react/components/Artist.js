@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 
-import AudioPlayer from '../../components/AudioPlayer'
-import UploadFileForm from '../../components/UploadFileForm'
+import AudioPlayer from './AudioPlayer'
+import UploadFileForm from './UploadFileForm'
+import Button from './../materials/Button'
 
 const S3 = 'https://jp-web-demo.s3-us-west-2.amazonaws.com';
 
 const Artist = props =>{
-  
   if(props.client.artist_name){
     return(
       <div className="container artist">
 
-        <button
+        <Button
+          text='Delete'
+          className="btn btn-danger"
           onClick={() => props.removeClient(props.client.client_id)}
-          className="btn btn-danger">
-          Delete
-        </button>
+        />
 
         <h3>{props.client.artist_name}</h3>
         <p>{props.client.description}</p>

@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import $ from 'jquery'
+import React, { Component, PropTypes } from 'react'
+
+import Button from '../materials/Button'
 
 /** @namespace this */
 export default class UploadFileForm extends Component{
@@ -86,7 +87,7 @@ export default class UploadFileForm extends Component{
             className="form-control"
             ref={(ref) => this.getFile(ref)}
           />
-          <button className="btn btn-success" type="submit">Upload</button>
+          <Button className="btn btn-success" type="submit" text="Upload"/>
         </form>
 
         <span className="submit-message">{this.state.output}</span>
@@ -95,3 +96,7 @@ export default class UploadFileForm extends Component{
     )
   }
 }
+
+UploadFileForm.propTypes = {
+  client: PropTypes.object.isRequired
+};

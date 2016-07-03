@@ -20,7 +20,6 @@ if(process.env.NODE_ENV === 'development'){
   )(createStore);
 }
 
-
 render(
   <Provider store={storeWithMiddleware(reducers)}>
     <Router />

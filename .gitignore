@@ -1,7 +1,7 @@
 node_modules
-public/bower_components
-public/css/*
+#public/bower_components
+#public/css/*
 public/js/scripts.min.js
-public/images/*
-#src/*
+#public/images/*
+src/*
 .env

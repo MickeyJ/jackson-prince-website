@@ -26,36 +26,34 @@ router.post('/upload_audio/:bucket_dir', function(req, res){
     var client_audio_id = req.body.client_id;
     var title = req.body.title;
     var date = req.body.date;
-
-    db.Audio()
-      .insert({client_audio_id, title, date, filename})
-      .then(audio =>{
-
-        s3.putObject({
-          ACL: 'public-read',
-          Bucket: process.env.AWS_BUCKET,
-          Key: req.params.bucket_dir +"/audio/"+ file.originalFilename,
-          Body: stream,
-        }, (error, response) =>{
-          if(error){
-            console.log(error);
-            res.send('Error!')
-          } else {
-            fs.unlink(file.path, (err) =>{
-              if(err) console.error(err);
-            })
-            res.send('Success!')
-          }
-        });
-        
-      })
-      .catch(error =>{
-        res.status(422).send({error})
-      })
+    
+    s3.putObject({
+      ACL: 'public-read',
+      Bucket: process.env.AWS_BUCKET,
+      Key: req.params.bucket_dir +"/audio/"+ file.originalFilename,
+      Body: stream,
+    }, (error, response) =>{
+      if(error){
+        console.log(error);
+        res.send('Error!')
+      } else {
+        fs.unlink(file.path, (err) =>{
+          if(err) console.error(err);
+        })
+        db.Audio()
+        .insert({client_audio_id, title, date, filename})
+        .then(audio =>{
+          res.status(200).send('Success!')
+        })
+        .catch(error =>{
+          res.status(422).send({error})
+        })
+      }
+    });
   }
 })
 
-router.get('/list_buckets', function(req, res){
+router.get('/buckets', function(req, res){
   s3.listBuckets(function(err, data) {
     if (err) { console.log("Error:", err); }
     else {

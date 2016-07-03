@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getClientProfile, removeClient, removeAudio } from '../redux/actions'
 
 
+/** @namespace this */
 export default class Clients extends Component{
   getClientProfile(id){
     return this.props.getClientProfile(id).then(res =>{
@@ -62,13 +63,14 @@ Clients.contextTypes = {
 };
 
 Clients.propTypes = {
-  clients: PropTypes.array.isRequired
+  clients: PropTypes.array.isRequired,
+  client: PropTypes.object
 };
 
 function mapStateToProps(state) {
   return {
     client: state.admin.client,
-    clients: state.admin.clients,
+    clients: state.admin.clients
   }
 }
 

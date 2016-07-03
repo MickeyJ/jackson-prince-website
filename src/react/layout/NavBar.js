@@ -6,7 +6,7 @@ const Navbar = (props) => {
   if(!props.token){
     return(
       <nav id='app-nav'>
-        <span>login</span>
+        <h3>Login</h3>
       </nav>
     )
   } else {

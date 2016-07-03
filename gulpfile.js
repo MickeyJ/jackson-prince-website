@@ -47,9 +47,9 @@ gulp.task('images',() =>{
 });
 
 gulp.task('watch',() =>{
-  gulp.watch('src/js/**/*.js', ['script']);
+  // gulp.watch('src/js/**/*.js', ['script']);
   gulp.watch('src/scss/**/*.scss', ['sass']);
   // gulp.watch('src/images/*', ['images']);
 });
 
-gulp.task('default', [ 'start', 'sass', 'script', 'watch']);
+gulp.task('default', [ 'start', 'sass', 'watch']);

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Audio from 'react-howler'
 import raf from 'raf'
 
+import Button from '../materials/Button'
+
 export default class AudioPlayer extends Component{
   constructor(){
     super();
@@ -80,14 +82,13 @@ export default class AudioPlayer extends Component{
             <rect width={this.state.currentTime} height="10" x="0" fill="#008d46" />
           </svg>
         </div>
-        <button
+        
+        <Button
+          text={this.state.playing ? <span>&#10074;&#10074;</span> : <span>&#9658;</span>}
           className="btn btn-info"
-          onClick={this.handleToggle.bind(this)}>
-          {(this.state.playing)
-            ? <span>&#10074;&#10074;</span>
-            : <span>&#9658;</span>
-          }
-        </button>
+          onClick={this.handleToggle.bind(this)}
+        />
+
         <Audio
           src={this.props.audio}
           playing={this.state.playing}

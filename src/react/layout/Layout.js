@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 import { verifyAdmin } from '../redux/actions'
 
@@ -39,10 +38,7 @@ class Layout extends Component{
         <main>
           {this.props.children}
         </main>
-
-        {/*
-        */}
-
+        
       </div>
     )
   }
