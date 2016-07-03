@@ -27,7 +27,8 @@ class Layout extends Component{
   }
   render(){
     return(
-      <div className="container-fluid">
+      <div >
+        <br/>
         <div id="app-header">
           <Navbar
             token={JWT.fetch()}
@@ -38,6 +39,9 @@ class Layout extends Component{
         <main>
           {this.props.children}
         </main>
+
+        {/*
+        */}
 
       </div>
     )

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { getClientProfile, removeClient, removeAudio } from '../redux/actions'
 
+
 export default class Clients extends Component{
   getClientProfile(id){
     return this.props.getClientProfile(id).then(res =>{
@@ -26,15 +27,19 @@ export default class Clients extends Component{
     }
   }
   render(){
+    let clientId = this.props.client.client_id;
+    let activeLink = "artist-menu-link active-artist";
+    let inactiveLink = "artist-menu-link";
+
     return(
       <div className="inner-layout">
         <section id="artist-menu">
           {this.props.clients.map((x, i) =>(
             <div
               key={i}
-              className="artist-menu-link"
+              className={clientId == x.client_id ? activeLink : inactiveLink}
               onClick={() => this.getClientProfile(x.client_id)}>
-              {x.artist_name}
+              <span className="artist-name">{x.artist_name}</span>
               <span className="arrow">&#10148;</span>
             </div>
           ))}

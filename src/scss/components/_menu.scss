@@ -1,9 +1,9 @@
 
 #artist-menu{
   float: left;
-  width: 150px;
+  width: 15%;
   border-top: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  //border-right: 1px solid #ccc;
 }
 
 .artist-menu-link{
@@ -12,6 +12,17 @@
   border-bottom: 1px solid #ccc;
   @include center-text(100px, left);
   @include transition(background 0.1s);
+
+  .artist-name{
+    margin-left: 5%;
+  }
+
+  &.active-artist{
+    background: $jp-grey-light;
+    .arrow{
+      opacity: 1;
+    }
+  }
 
   &:hover{
     background: $jp-grey-light;
@@ -23,6 +34,8 @@
 
 .artist{
   float: right;
+  width: 85%;
+  min-height: 40vh;
   border: 1px solid #ccc;
 }
 

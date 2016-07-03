@@ -11,6 +11,9 @@
     @include center-text($app-header-height, center);
     padding: 5px;
     text-decoration: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
     border-radius: 4px 4px 0 0 ;
     background: $jp-grey-light;
     color: $jp-black;

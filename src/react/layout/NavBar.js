@@ -5,7 +5,7 @@ import NavLink from './../components/NavLink'
 const Navbar = (props) => {
   if(!props.token){
     return(
-      <nav id="nav">
+      <nav id='app-nav'>
         <span>login</span>
       </nav>
     )

@@ -106,6 +106,9 @@
   text-align: center;
   padding: 5px;
   text-decoration: none;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-radius: 4px 4px 0 0;
   background: #f6f6f6;
   color: black;
@@ -220,6 +223,9 @@
   text-align: center;
   padding: 5px;
   text-decoration: none;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-radius: 4px 4px 0 0;
   background: #f6f6f6;
   color: black;
@@ -335,9 +341,8 @@
 
 #artist-menu {
   float: left;
-  width: 150px;
+  width: 15%;
   border-top: 1px solid #ccc;
-  border-right: 1px solid #ccc;
 }
 
 .artist-menu-link {
@@ -352,6 +357,18 @@
   transition: background 0.1s;
 }
 
+.artist-menu-link .artist-name {
+  margin-left: 5%;
+}
+
+.artist-menu-link.active-artist {
+  background: #f6f6f6;
+}
+
+.artist-menu-link.active-artist .arrow {
+  opacity: 1;
+}
+
 .artist-menu-link:hover {
   background: #f6f6f6;
 }
@@ -362,6 +379,8 @@
 
 .artist {
   float: right;
+  width: 85%;
+  min-height: 40vh;
   border: 1px solid #ccc;
 }
 
