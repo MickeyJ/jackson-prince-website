@@ -6,3 +6,5 @@ Jackson Prince
 
 - Aside from a gorgeously simple static website, Jackson has his own client management application. 
 - Clients can login and see their project come together.
+
+[__Live Demo__](https://jp-web.herokuapp.com)
