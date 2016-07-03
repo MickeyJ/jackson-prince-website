@@ -3,5 +3,5 @@ node_modules
 #public/css/*
 #public/js/scripts.min.js
 #public/images/*
-#src/*
+src/*
 .env

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import AudioPlayer from '../../components/AudioPlayer'
 
+import AudioPlayer from '../../components/AudioPlayer'
 import UploadFileForm from '../../components/UploadFileForm'
 
-const S3 = 'https://s3-us-west-1.amazonaws.com';
+const S3 = 'https://jp-web-demo.s3-us-west-2.amazonaws.com';
 
 const Artist = props =>{
   
@@ -32,7 +32,7 @@ const Artist = props =>{
             trackName={x.title}
             id={x.audio_id}
             removeAudio={props.removeAudio.bind(this)}
-            audio={`${S3}/jp-client-bucket/${props.client.bucket_dir}/audio/${x.filename}`}
+            audio={`${S3}/${props.client.bucket_dir}/audio/${x.filename}`}
           />
         ))}
 

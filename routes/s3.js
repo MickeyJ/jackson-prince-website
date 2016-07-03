@@ -33,7 +33,7 @@ router.post('/upload_audio/:bucket_dir', function(req, res){
 
         s3.putObject({
           ACL: 'public-read',
-          Bucket: 'jp-client-bucket',
+          Bucket: process.env.AWS_BUCKET,
           Key: req.params.bucket_dir +"/audio/"+ file.originalFilename,
           Body: stream,
         }, (error, response) =>{

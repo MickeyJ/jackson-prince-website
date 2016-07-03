@@ -15,24 +15,6 @@ var s3Client = new Minio({
   secretKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
-router.get('/list_files', (req, res) =>{
-  const objects = [];
-  const objectsStream = s3Client.listObjects('at-play', '', true)
-
-  objectsStream.on('data', (obj) =>{
-    const pathSplit = obj.name.split(/\//);
-    if(pathSplit[0] === req.query.dir && pathSplit[1].length > 1){
-      objects.push(obj)
-    }
-  })
-  objectsStream.on('error', (e) =>{
-    objects.push(e)
-  })
-
-  setTimeout(() =>{
-    res.send(objects);
-  }, 500)
-})
 
 router.get('/me', (req, res, next) => {
   if(req.headers.authorization){

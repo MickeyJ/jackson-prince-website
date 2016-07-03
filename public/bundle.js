@@ -16516,7 +16516,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var S3 = 'https://s3-us-west-1.amazonaws.com';
+	var S3 = 'https://jp-web-demo.s3-us-west-2.amazonaws.com';
 
 	var Artist = function Artist(props) {
 
@@ -16554,7 +16554,7 @@
 	          trackName: x.title,
 	          id: x.audio_id,
 	          removeAudio: props.removeAudio.bind(undefined),
-	          audio: S3 + '/jp-client-bucket/' + props.client.bucket_dir + '/audio/' + x.filename
+	          audio: S3 + '/' + props.client.bucket_dir + '/audio/' + x.filename
 	        });
 	      })
 	    );
