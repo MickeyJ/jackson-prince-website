@@ -1,7 +1,9 @@
+public/bower_components
+public/css/*
+public/images/*
+public/js/bundle.js
+public/js/bundle.js.map
+#src/*
+
 node_modules
-#public/bower_components
-#public/css/*
-public/js/scripts.min.js
-#public/images/*
-src/*
 .env
