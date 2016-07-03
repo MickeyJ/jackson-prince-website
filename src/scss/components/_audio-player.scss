@@ -16,8 +16,9 @@
     }
 
     .delete-audio {
+      @include transition(opacity 0.1s);
       cursor: pointer;
-      display: none;
+      opacity: 0;
       font-size: 0.8em;
       position: absolute;
       top: 1px;
@@ -28,7 +29,7 @@
 
   &:hover{
     .delete-audio {
-      display: inline;
+      opacity: 1;
     }
   }
 

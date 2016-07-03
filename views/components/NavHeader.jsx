@@ -11,9 +11,9 @@ const NavHeader = (props) =>(
 
     <nav id="nav" >
       <a className="black" href="/">Me</a>
-      <span>|</span>
+      <span> | </span>
       <a className="black" id="contact-link">Contact</a>
-      <span>|</span>
+      <span> | </span>
       <a className="black" href="/admin">Admin</a>
     </nav>
 

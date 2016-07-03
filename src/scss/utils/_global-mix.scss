@@ -83,6 +83,13 @@
   );
 }
 
+@mixin box-shadow($depth, $blur, $color){
+  -webkit-box-shadow: (0 10px $depth -#{$blur} $color,);
+  -moz-box-shadow: (0 10px $depth -#{$blur} $color);
+  -o-box-shadow: (0 10px $depth -#{$blur} $color);
+  box-shadow: (0 10px $depth -#{$blur} $color);
+}
+
 
 /*                         border-radius
 *  -----------------------------------------------------------
