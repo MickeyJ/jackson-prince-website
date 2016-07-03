@@ -52,11 +52,7 @@ router.post('/upload_audio/:bucket_dir', function(req, res){
       .catch(error =>{
         res.status(422).send({error})
       })
-
-    
-
   }
-
 })
 
 router.get('/list_buckets', function(req, res){

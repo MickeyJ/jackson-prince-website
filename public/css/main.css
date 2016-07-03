@@ -380,6 +380,10 @@
   border: 1px solid #ccc;
 }
 
+.audio-player .audio-header {
+  position: relative;
+}
+
 .audio-player .audio-header h4 {
   display: inline;
 }
@@ -387,6 +391,19 @@
 .audio-player .audio-header .thin-text {
   font-size: 0.9em;
   font-weight: 200;
+}
+
+.audio-player .audio-header .delete-audio {
+  cursor: pointer;
+  display: none;
+  font-size: 0.8em;
+  position: absolute;
+  top: 1px;
+  right: 5px;
+}
+
+.audio-player:hover .delete-audio {
+  display: inline;
 }
 
 ::-webkit-scrollbar {

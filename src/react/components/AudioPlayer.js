@@ -60,6 +60,11 @@ export default class AudioPlayer extends Component{
         <header className="audio-header">
           <h4>{this.props.trackName}</h4>
           <span className='thin-text'> - {this.props.date}</span>
+          <span 
+            className="delete-audio" 
+            onClick={() => this.props.removeAudio(this.props.id)}>
+            &#10060;
+          </span>
         </header>
         <p>
           {minutes > 1

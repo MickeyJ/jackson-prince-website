@@ -102,7 +102,7 @@ router.post('/register_client', auth.register, (req, res, next) =>{
 
 });
 
-router.post('/client', (req, res) =>{
+router.post('/get_client', (req, res) =>{
   if(req.body){
     db.Client()
     .where({client_id: req.body.id})
@@ -119,14 +119,46 @@ router.post('/client', (req, res) =>{
   }
 })
 
+router.delete('/delete_client/:id', (req, res) =>{
+  if(req.params.id){
+    db.Audio()
+      .where({client_audio_id: req.params.id})
+      .del()
+      .then(audio =>{
+        db.Client()
+        .where({client_id: req.params.id})
+        .del()
+        .then(client =>{
+          res.json({audio});
+        })
+    })
+  } else {
+    console.log(req);
+  }
+})
+
+router.delete('/delete_audio/:id', (req, res) =>{
+  if(req.params.id){
+    db.Audio()
+      .where({audio_id: req.params.id})
+      .del()
+      .returning('*')
+      .then(audio =>{
+        res.json({audio});
+      })
+  } else {
+    console.log(req);
+  }
+})
+
 router.get('/show_clients', (req, res) =>{
   db.Client()
-    .then(clients =>{
-      clients.map(x =>{
-        delete x.password_hash;
-      })
-      res.json({clients});
+  .then(clients =>{
+    clients.map(x =>{
+      delete x.password_hash;
     })
+    res.json({clients});
+  })
 })
 
 module.exports = router;

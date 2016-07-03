@@ -10,6 +10,9 @@ const Artist = props =>{
   if(props.client.artist_name){
     return(
       <div className="container artist">
+        <button
+          onClick={() => props.removeClient(props.client.client_id)}
+          className="btn btn-danger">Delete</button>
 
         <h3>{props.client.artist_name}</h3>
         <p>{props.client.description}</p>
@@ -24,6 +27,8 @@ const Artist = props =>{
             key={i}
             date={x.date}
             trackName={x.title}
+            id={x.audio_id}
+            removeAudio={props.removeAudio.bind(this)}
             audio={`${S3}/jp-client-bucket/${props.client.bucket_dir}/audio/${x.filename}`}
           />
         ))}

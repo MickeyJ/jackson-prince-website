@@ -28,6 +28,7 @@ router.post('/client_login', auth.login, (req, res, next) =>{
   const body = req.body;
   db.Client()
     .whereRaw('lower(email) = ?', body.email.toLowerCase())
+    .innerJoin('audio', 'client.client_id', 'audio.client_audio_id')
     .first()
     .then(client => {
       if(!client){

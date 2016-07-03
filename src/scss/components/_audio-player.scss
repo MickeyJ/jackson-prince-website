@@ -4,6 +4,7 @@
   border: 1px solid #ccc;
 
   .audio-header{
+    position: relative;
 
     h4{
       display: inline;
@@ -14,6 +15,23 @@
       font-weight: 200;
     }
 
+    .delete-audio {
+      cursor: pointer;
+      display: none;
+      font-size: 0.8em;
+      position: absolute;
+      top: 1px;
+      right: 5px;
+    }
+
+
+
+  }
+
+  &:hover{
+    .delete-audio {
+      display: inline;
+    }
   }
 
 }

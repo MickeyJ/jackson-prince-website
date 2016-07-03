@@ -3175,11 +3175,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.GET_CLIENT_PROFILE = exports.CREATE_NEW_CLIENT = exports.LOG_IN = exports.IS_AUTHED = undefined;
+	exports.REMOVE_AUDIO = exports.REMOVE_CLIENT = exports.GET_CLIENT_PROFILE = exports.CREATE_NEW_CLIENT = exports.LOG_IN = exports.IS_AUTHED = undefined;
 	exports.verifyAdmin = verifyAdmin;
 	exports.adminLogin = adminLogin;
 	exports.createNewClient = createNewClient;
 	exports.getClientProfile = getClientProfile;
+	exports.removeClient = removeClient;
+	exports.removeAudio = removeAudio;
 
 	var _axios = __webpack_require__(132);
 
@@ -3195,6 +3197,8 @@
 	var LOG_IN = exports.LOG_IN = 'LOG_IN';
 	var CREATE_NEW_CLIENT = exports.CREATE_NEW_CLIENT = 'CREATE_NEW_CLIENT';
 	var GET_CLIENT_PROFILE = exports.GET_CLIENT_PROFILE = 'GET_CLIENT_PROFILE';
+	var REMOVE_CLIENT = exports.REMOVE_CLIENT = 'REMOVE_CLIENT';
+	var REMOVE_AUDIO = exports.REMOVE_AUDIO = 'REMOVE_AUDIO';
 
 	var API = '/api/admin';
 
@@ -3227,9 +3231,25 @@
 	}
 
 	function getClientProfile(id) {
-	  var request = _axios2.default.post(API + '/client', { id: id });
+	  var request = _axios2.default.post(API + '/get_client', { id: id });
 	  return {
 	    type: GET_CLIENT_PROFILE,
+	    payload: request
+	  };
+	}
+
+	function removeClient(id) {
+	  var request = _axios2.default.delete(API + '/delete_client/' + id);
+	  return {
+	    type: REMOVE_CLIENT,
+	    payload: request
+	  };
+	}
+
+	function removeAudio(id) {
+	  var request = _axios2.default.delete(API + '/delete_audio/' + id);
+	  return {
+	    type: REMOVE_AUDIO,
 	    payload: request
 	  };
 		}
@@ -15705,6 +15725,15 @@
 	            { className: 'thin-text' },
 	            ' - ',
 	            this.props.date
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            {
+	              className: 'delete-audio',
+	              onClick: function onClick() {
+	                return _this2.props.removeAudio(_this2.props.id);
+	              } },
+	            '❌'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -16375,6 +16404,27 @@
 	      return this.props.getClientProfile(id).then(function (res) {});
 	    }
 	  }, {
+	    key: 'removeClient',
+	    value: function removeClient(id) {
+	      var removalPrompt = confirm('Are you sure you want to delete this client?');
+	      if (removalPrompt) {
+	        this.props.removeClient(id).then(function (res) {
+	          console.log(res);
+	        });
+	        this.context.router.go('/client');
+	      }
+	    }
+	  }, {
+	    key: 'removeAudio',
+	    value: function removeAudio(id) {
+	      var removalPrompt = confirm('Are you sure you want to delete this track?');
+	      if (removalPrompt) {
+	        this.props.removeAudio(id).then(function (res) {
+	          console.log(res);
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -16410,7 +16460,9 @@
 	        ),
 	        _react2.default.cloneElement(this.props.children, {
 	          client: this.props.client,
-	          getClientProfile: this.props.getClientProfile
+	          getClientProfile: this.props.getClientProfile,
+	          removeClient: this.removeClient.bind(this),
+	          removeAudio: this.removeAudio.bind(this)
 	        })
 	      );
 	    }
@@ -16438,7 +16490,9 @@
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-	  getClientProfile: _actions.getClientProfile
+	  getClientProfile: _actions.getClientProfile,
+	  removeClient: _actions.removeClient,
+	  removeAudio: _actions.removeAudio
 		})(Clients);
 
 /***/ },
@@ -16474,6 +16528,15 @@
 	      'div',
 	      { className: 'container artist' },
 	      _react2.default.createElement(
+	        'button',
+	        {
+	          onClick: function onClick() {
+	            return props.removeClient(props.client.client_id);
+	          },
+	          className: 'btn btn-danger' },
+	        'Delete'
+	      ),
+	      _react2.default.createElement(
 	        'h3',
 	        null,
 	        props.client.artist_name
@@ -16492,6 +16555,8 @@
 	          key: i,
 	          date: x.date,
 	          trackName: x.title,
+	          id: x.audio_id,
+	          removeAudio: props.removeAudio.bind(undefined),
 	          audio: S3 + '/jp-client-bucket/' + props.client.bucket_dir + '/audio/' + x.filename
 	        });
 	      })
@@ -16796,6 +16861,19 @@
 	        client: action.payload.data.client,
 	        error: action.error
 	      });
+	    case _actions.REMOVE_CLIENT:
+	      return _extends({}, state, state.token, {
+	        clients: action.payload.data.clients,
+	        error: action.error
+	      });
+	    case _actions.REMOVE_AUDIO:
+	      return _extends({}, state, state.token, {
+	        client: state.client.audio.filter(function (x) {
+	          return action.payload.data.audio[0].audio_id;
+	        }),
+	        error: action.error
+	      });
+
 	    default:
 	      return state;
 	  }

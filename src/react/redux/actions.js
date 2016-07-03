@@ -5,6 +5,8 @@ export const IS_AUTHED = 'IS_AUTHED';
 export const LOG_IN = 'LOG_IN';
 export const CREATE_NEW_CLIENT = 'CREATE_NEW_CLIENT';
 export const GET_CLIENT_PROFILE = 'GET_CLIENT_PROFILE';
+export const REMOVE_CLIENT = 'REMOVE_CLIENT';
+export const REMOVE_AUDIO = 'REMOVE_AUDIO';
 
 const API = '/api/admin';
 
@@ -37,9 +39,25 @@ export function createNewClient(credentials){
 }
 
 export function getClientProfile(id){
-  const request = axios.post(`${API}/client`, {id});
+  const request = axios.post(`${API}/get_client`, {id});
   return{
     type: GET_CLIENT_PROFILE,
+    payload: request
+  }
+}
+
+export function removeClient(id){
+  const request = axios.delete(`${API}/delete_client/${id}`);
+  return{
+    type: REMOVE_CLIENT,
+    payload: request
+  }
+}
+
+export function removeAudio(id){
+  const request = axios.delete(`${API}/delete_audio/${id}`);
+  return{
+    type: REMOVE_AUDIO,
     payload: request
   }
 }

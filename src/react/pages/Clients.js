@@ -1,11 +1,28 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getClientProfile } from '../redux/actions'
+import { getClientProfile, removeClient, removeAudio } from '../redux/actions'
 
 export default class Clients extends Component{
   getClientProfile(id){
     return this.props.getClientProfile(id).then(res =>{
     })
+  }
+  removeClient(id){
+    let removalPrompt = confirm('Are you sure you want to delete this client?');
+    if(removalPrompt){
+      this.props.removeClient(id).then(res =>{
+        console.log(res);
+      });
+      this.context.router.go('/client');
+    }
+  }
+  removeAudio(id){
+    let removalPrompt = confirm('Are you sure you want to delete this track?');
+    if(removalPrompt){
+      this.props.removeAudio(id).then(res =>{
+        console.log(res);
+      });
+    }
   }
   render(){
     return(
@@ -27,7 +44,9 @@ export default class Clients extends Component{
 
         {React.cloneElement(this.props.children, {
           client: this.props.client,
-          getClientProfile: this.props.getClientProfile
+          getClientProfile: this.props.getClientProfile,
+          removeClient: this.removeClient.bind(this),
+          removeAudio: this.removeAudio.bind(this)
         })}
 
       </div>
@@ -51,5 +70,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps,{
-  getClientProfile
+  getClientProfile,
+  removeClient,
+  removeAudio
 })(Clients);
