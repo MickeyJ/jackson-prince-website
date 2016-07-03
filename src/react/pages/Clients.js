@@ -27,9 +27,6 @@ export default class Clients extends Component{
   render(){
     return(
       <div className="inner-layout">
-
-        <h3>Clients</h3>
-        
         <section id="artist-menu">
           {this.props.clients.map((x, i) =>(
             <div
