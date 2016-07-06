@@ -10,19 +10,30 @@ const Navbar = (props) => {
       </nav>
     )
   } else {
-    return (
-      <ul id='app-nav' className="nav nav-pills">
-        <li>
-          <NavLink to="/clients">Clients</NavLink>
-        </li>
-        <li>
-          <NavLink to="/new_client">New Client</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" onClick={props.handleLogout.bind(this)}>Logout</NavLink>
-        </li>
-      </ul>
-    )
+    if(props.status === 'ADMIN'){
+      return (
+        <ul id='app-nav' className="nav nav-pills">
+          <li>
+            <NavLink to="/admin/clients">Clients</NavLink>
+          </li>
+          <li>
+            <NavLink to="/new_client">New Client</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" onClick={props.handleLogout.bind(this)}>Logout</NavLink>
+          </li>
+        </ul>
+      )
+    } else {
+      return (
+        <ul id='app-nav' className="nav nav-pills">
+          <li>
+            <NavLink to="/login" onClick={props.handleLogout.bind(this)}>Logout</NavLink>
+          </li>
+        </ul>
+      )
+    }
+
   }
 };
 

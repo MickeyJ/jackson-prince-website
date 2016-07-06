@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import AudioPlayer from './AudioPlayer'
+import PlayerDefault from './PlayerDefault'
 import UploadFileForm from './UploadFileForm'
 import Button from './../materials/Button'
 
@@ -26,7 +26,7 @@ const Artist = props =>{
         />
 
         {props.client.audio.map((x, i) =>(
-          <AudioPlayer
+          <PlayerDefault
             key={i}
             date={x.date}
             trackName={x.title}

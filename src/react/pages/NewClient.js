@@ -4,7 +4,7 @@ import { createNewClient } from '../redux/actions'
 
 import Button from '../materials/Button'
 
-export default class NewClient extends Component{
+class NewClient extends Component{
   constructor(){
     super();
     this.state = { output: '' }
@@ -45,7 +45,7 @@ export default class NewClient extends Component{
     return(
       this.props.createNewClient(newClient)
         .then(res =>{
-          this.context.router.replace('/clients');
+          this.context.router.replace('/admin/clients');
         })
         .catch(err =>{
           this.setState({ output: err});
@@ -64,7 +64,7 @@ export default class NewClient extends Component{
               type="text"
               id="client-name"
               name="client-name"
-              placeholder="Artist Name"
+              defaultValue="Some Artist"
               className="form-control"
               ref={(ref) => this.getArtistNameValue(ref)}
             />
@@ -74,7 +74,7 @@ export default class NewClient extends Component{
               type="text"
               id="client-email"
               name="client-email"
-              placeholder="Email"
+              defaultValue="someartist@mail.com"
               className="form-control"
               ref={(ref) => this.getEmailValue(ref)}
             />
@@ -84,7 +84,7 @@ export default class NewClient extends Component{
               type="password"
               id="client-password"
               name="client-password"
-              placeholder="Password"
+              defaultValue="asdfasdf"
               className="form-control"
               ref={(ref) => this.getPasswordValue(ref)}
             />
@@ -94,7 +94,7 @@ export default class NewClient extends Component{
               type="text"
               id="client-description"
               name="client-description"
-              placeholder="Description/Genre"
+              defaultValue="so hot right now"
               className="form-control"
               ref={(ref) => this.getDescriptionValue(ref)}
             />

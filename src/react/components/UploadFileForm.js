@@ -62,8 +62,12 @@ export default class UploadFileForm extends Component{
     })
   }
   render(){
+    const dateNow = new Date();
+    const month = dateNow.getUTCMonth() + 1;
+    const day = dateNow.getUTCDate();
+    const year = dateNow.getUTCFullYear();
     return(
-      <div>
+      <div className="audio-upload-form">
 
         <h4>Upload a file</h4>
 
@@ -77,7 +81,7 @@ export default class UploadFileForm extends Component{
           <input
             type="text"
             className="form-control"
-            placeholder="Date"
+            defaultValue={`${month}/${day}/${year}`}
             ref={(ref) => this.getDate(ref)}
           />
           <input

@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { getClientProfile, removeClient, removeAudio } from '../redux/actions'
 
-
 /** @namespace this */
-export default class Clients extends Component{
+class Clients extends Component{
   getClientProfile(id){
     return this.props.getClientProfile(id).then(res =>{
-      this.context.router.push('/clients');
+      this.context.router.replace('/admin/clients');
     })
   }
   removeClient(id){
@@ -16,7 +15,7 @@ export default class Clients extends Component{
       this.props.removeClient(id).then(res =>{
         console.log(res);
       });
-      this.context.router.replace('/clients');
+      this.context.router.replace('/admin/clients');
     }
   }
   removeAudio(id){
@@ -27,6 +26,9 @@ export default class Clients extends Component{
       });
     }
   }
+  componentWillReceiveProps(){
+    console.log(this.props);
+  }
   render(){
     let clientId = this.props.client.client_id;
     let activeLink = "artist-menu-link active-artist";
@@ -34,6 +36,7 @@ export default class Clients extends Component{
 
     return(
       <div className="inner-layout">
+
         <section id="artist-menu">
           {this.props.clients.map((x, i) =>(
             <div

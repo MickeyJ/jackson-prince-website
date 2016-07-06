@@ -2,20 +2,30 @@ import React, { Component } from 'react'
 
 import JWT from '../helpers/jwt_helper.js'
 import { connect } from 'react-redux'
-import { adminLogin } from '../redux/actions'
+import { userLogin } from '../redux/actions'
 
 import Button from '../materials/Button'
 
 export default class LoginForm extends Component{
   constructor(){
     super();
-    this.state = { output: '' }
+    this.state = { 
+      output: '',
+      loginType: 'admin'
+    }
   }
   getEmailValue(ref){
     this.email = ref;
   }
   getPasswordValue(ref){
     this.password = ref;
+  }
+  changeLoginType(){
+    if(this.state.loginType === 'admin'){
+      this.setState({ loginType: 'client'})
+    } else {
+      this.setState({ loginType: 'admin'})
+    }
   }
   handleSubmit(e){
     e.preventDefault();
@@ -27,11 +37,16 @@ export default class LoginForm extends Component{
       return;
     }
     return(
-      this.props.adminLogin({email, password})
+      this.props.userLogin({email, password}, this.state.loginType)
         .then(res =>{
-          if(res.payload.data.admin){
+          if(res.payload.data.admin || res.payload.data.client){
             JWT.save(res.payload.data.token);
-            this.context.router.replace('/clients');
+
+            if(this.state.loginType === 'client'){
+              this.context.router.replace('/client');
+            } else {
+              this.context.router.replace('/admin/clients');
+            }
           } else {
             this.setState({
               output: res.payload.data.error
@@ -49,6 +64,12 @@ export default class LoginForm extends Component{
   render(){
     return(
       <div className="jumbotron">
+        <Button 
+          type="submit" 
+          text={this.state.loginType}
+          className="btn btn-primary" 
+          onClick={this.changeLoginType.bind(this)}
+        />
         
         <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
           <fieldset className="form-group">
@@ -90,5 +111,5 @@ const mapStateToProps = (state) =>({
 });
 
 export default connect(mapStateToProps, {
-  adminLogin
+  userLogin
 })(LoginForm);

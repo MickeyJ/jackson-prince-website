@@ -9,6 +9,7 @@ var multiMiddleware = multiparty();
 
 const routes = require('./routes/index');
 const admin = require('./routes/admin');
+const client = require('./routes/client');
 const s3 = require('./routes/s3');
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
 app.use('/api/admin', admin);
 app.use('/api/files', s3);
+app.use('/api/client', client);
 
 // app.use( (req, res, next) =>{
 //   const err = new Error('Not Found');

@@ -3,6 +3,8 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router'
 
 import Layout from './layout/Layout'
 import LoginForm from './components/LoginForm'
+import Admin from './containers/Admin'
+import Client from './containers/Client'
 import Clients from './pages/Clients'
 import NewClient from './pages/NewClient'
 import Artist from './components/Artist'
@@ -14,11 +16,17 @@ const Routes = () =>(
       
       <Route path="/login" component={LoginForm}/>
       
-      <Route path="/clients" component={Clients}>
-        <IndexRoute component={Artist}/>
+      <Route path="/admin" component={Admin}>
+        <Route path="/admin/clients" component={Clients}>
+          <IndexRoute component={Artist}/>
+        </Route>
+
+        <Route path="/new_client" component={NewClient}/>
       </Route>
-      
-      <Route path="/new_client" component={NewClient}/>
+
+      <Route path="/client" component={Client}/>
+
+
       
       <Route path="*" component={NotFound} />
       

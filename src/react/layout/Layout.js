@@ -1,43 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { verifyAdmin } from '../redux/actions'
-
 import JWT from '../helpers/jwt_helper'
 
-import Navbar from './Navbar'
-
-class Layout extends Component{
-  handleLogout(){
-    JWT.destroy();
-    this.context.router.replace('/login');
-  }
+export default class Layout extends Component{
   componentWillMount(){
     if(!JWT.fetch()){
-      this.context.router.replace('/login');
+      return this.context.router.replace('/login');
     } else {
-      return this.props.verifyAdmin().then(res => {
-        this.context.router.replace('/clients');
-      }).catch(err =>{
-        if(err){
-          this.handleLogout()
-        }
-      })
+      return this.context.router.replace('/admin/clients');
     }
   }
   render(){
     return(
       <div >
-        <br/>
-        <div id="app-header">
-          <Navbar
-            token={JWT.fetch()}
-            handleLogout={this.handleLogout.bind(this)}
-          />
-        </div>
-
-        <main>
-          {this.props.children}
-        </main>
+        
+        {this.props.children}
         
       </div>
     )
@@ -51,11 +28,8 @@ Layout.contextTypes = {
 function mapStateToProps(state) {
   return {
     admin: state.admin.cred,
-    clients: state.admin.clients,
-    error: state.admin.error
+    client: state.client.cred
   }
 }
 
-export default connect(mapStateToProps, {
-  verifyAdmin
-})(Layout);
+export default connect(mapStateToProps)(Layout);

@@ -1,9 +1,11 @@
 
 .audio-player{
   width: 400px;
+  padding: 1%;
   border: 1px solid #ccc;
 
   .audio-header{
+    padding-bottom: 1%;
     position: relative;
 
     h4{

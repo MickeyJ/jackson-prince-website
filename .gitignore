@@ -1,8 +1,8 @@
-public/bower_components
-public/css/*
-public/images/*
-public/js/bundle.js
-public/js/bundle.js.map
+#public/bower_components
+#public/css/*
+#public/images/*
+#public/js/bundle.js
+#public/js/bundle.js.map
 #src/*
 
 node_modules

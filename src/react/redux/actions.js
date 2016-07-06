@@ -2,6 +2,7 @@ import axios from 'axios'
 import JWT from '../helpers/jwt_helper'
 
 export const IS_AUTHED = 'IS_AUTHED';
+export const IS_CLIENT_AUTHED = 'IS_CLIENT_AUTHED';
 export const LOG_IN = 'LOG_IN';
 export const CREATE_NEW_CLIENT = 'CREATE_NEW_CLIENT';
 export const GET_CLIENT_PROFILE = 'GET_CLIENT_PROFILE';
@@ -22,8 +23,20 @@ export function verifyAdmin(){
   }
 }
 
-export function adminLogin(credentials){
-  const request = axios.post(`${API}/login`, credentials);
+export function verifyClient(){
+  const request = axios({
+    url: `/api/client/me`,
+    method: 'GET',
+    headers: {'Authorization': `Bearer ${JWT.fetch()}`}
+  });
+  return{
+    type: IS_CLIENT_AUTHED,
+    payload: request
+  }
+}
+
+export function userLogin(credentials, loginType){
+  const request = axios.post(`/api/${loginType}/login`, credentials);
   return{
     type: LOG_IN,
     payload: request
