@@ -13,7 +13,7 @@ const Artist = props =>{
 
         <Button
           text='Delete'
-          className="btn btn-danger"
+          className="btn btn-danger delete-artist"
           onClick={() => props.removeClient(props.client.client_id)}
         />
 

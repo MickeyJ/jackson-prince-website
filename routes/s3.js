@@ -37,9 +37,9 @@ router.post('/upload_audio/:bucket_dir', function(req, res){
         console.log(error);
         res.send('Error!')
       } else {
-        fs.unlink(file.path, (err) =>{
-          if(err) console.error(err);
-        })
+        // fs.unlink(file.path, (err) =>{
+        //   if(err) console.error(err);
+        // })
         db.Audio()
         .insert({client_audio_id, title, date, filename})
         .then(audio =>{

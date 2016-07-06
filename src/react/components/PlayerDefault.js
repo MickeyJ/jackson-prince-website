@@ -2,31 +2,22 @@ import React, { Component } from 'react'
 
 import ReactAudioPlayer from 'react-audio-player'
 
-class PlayerDefault extends Component {
-  getAudioPlayer(ref){
-    this.audio = ref;
-  }
-  componentDidMount(){
-    console.log(this.audio.currentSrc);
-  }
-  render(){
-    return(
-      <div className="audio-player">
-        
-        <header className="audio-header">
-          <h4>{this.props.trackName}</h4>
-          <span className='thin-text'> - {this.props.date}</span>
-          <span
-            className="delete-audio"
-            onClick={() => this.props.removeAudio(this.props.id)}>
-            &#10060;
-          </span>
-        </header>
+const PlayerDefault = (props) =>(
+  <div className="audio-player">
 
-        <ReactAudioPlayer src={this.props.audio} />
+    <header className="audio-header">
+      <h4>{props.trackName}</h4>
+      <span className='thin-text'> - {props.date}</span>
+      <span
+        className="delete-audio"
+        onClick={() => props.removeAudio(props.id)}>
+        &#10060;
+      </span>
+    </header>
 
-      </div> 
-    )
-  }
-}
+    <ReactAudioPlayer src={props.audio} />
+
+  </div>
+);
+
 export default PlayerDefault
